@@ -21,25 +21,24 @@
 
 <body>
 
-    <div class="container d-flex flex-column align-items-center"
-    style="position: float;">
-    <img src="img/Logotipo Restaurante.png" alt="" class="img-fluid img-responsive" style="width: 200px;"></div>
-
-  <!-- Barra de navegación -->
-  <nav class="navbar navbar-expand-lg" style="background-color: #8d4925;">
+  <div class="container position-relative">
+    <img src="img/Logotipo Restaurante.png" alt="" class="img-fluid" style="width: 250px; position: absolute; top: 0; left: 50%; transform: translate(-50%, -65%); z-index: 2;">
+  </div>
+  
+  <nav class="navbar navbar-expand-lg" style="background-color: #8d4925; position: relative; z-index: 1; margin-top: 100px;">
     <div class="container-fluid">
       <button class="navbar-toggler" style="color: #f1dcc2; border-color: #f1dcc2; background-color: #f1dcc2;" type="button"
         data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
         aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" id="navbarNav" style="height: 46px;">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
             <a class="text-uppercase nav-link" aria-current="page" href="index.html" style="color: #f1dcc2;"><strong>Inicio</strong></a>
           </li>
           <li class="nav-item">
-            <a class="text-uppercase nav-link" href="#" style="color: #f1dcc2;"><strong>Recetas</strong></a>
+            <a class="text-uppercase nav-link" href="recetas.html" style="color: #f1dcc2;"><strong>Recetas</strong></a>
           </li>
           <li class="nav-item">
             <a class="text-uppercase nav-link" href="sobreNosotros.html" style="color: #f1dcc2;"><strong> Sobre nosotros</strong></a>
@@ -48,9 +47,10 @@
       </div>
     </div>
   </nav>
+  
 
   <!-- Form Start -->
-  <div class="container" style="margin-top: 10px;">
+  <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-4 col-sm-12 form text-center">
         <h2 style="color: #8d4925; font-weight: bold;">REGISTRO</h2>
@@ -129,6 +129,14 @@
             </div>
           </div>
         </div>
+      </div>
+      <div id="redes-sociales">
+        <ul>
+          <li><img src="img/twitter.png"  alt="logo twitter"></li>
+          <li><img src="img/facebook.png" alt="logo facebook"></li>
+          <li><img src="img/instagram.png" alt="logo instagram"></li>
+          <li><img src="img/youtube.png" alt="logo youtube"></li>
+        </ul>
       </div>
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3082.916006333715!2d-0.41517118499639205!3d39.40340627456383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sla%20florida%20universidad%20catarroja!5e0!3m2!1ses!2ses!4v1680705316032!5m2!1ses!2ses"
