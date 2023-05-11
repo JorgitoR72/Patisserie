@@ -1,1 +1,74 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f1dcc2;
+}
 
+.navbar {
+  z-index: 2;
+}
+
+.nav-link {
+  color: #8d4925;
+}
+
+/* Borde del buscador  */
+.form-control:focus {
+  border-color: #8d4925;
+  box-shadow: 0 0 0 0.2rem rgba(206, 108, 55, 0.25);
+}
+
+.banner {
+  position: absolute;
+  height: 215px;
+  top: 55px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('img/jumbotron1.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+/* Carousel flechas*/
+.carousel-control-prev,
+.carousel-control-next {
+  width: auto;
+  height: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+}
+
+.carousel-control-prev {
+  left: -3rem;
+}
+
+.carousel-control-next {
+  right: -3rem;
+}
+/* Logos de las redes sociales */
+#redes-sociales {
+  display: flex; /* Para centrar el bloque */
+  justify-content: center; /* Para centrar horizontalmente */
+  align-items: center; /* Para centrar verticalmente */
+}
+
+#redes-sociales ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+#redes-sociales li {
+  margin-right: 10px;
+}
+
+.sobre-nosotros h1,
+.sobre-nosotros p {
+  text-align: center;
+  color: white;
+}
