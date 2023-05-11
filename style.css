@@ -4,7 +4,7 @@ body {
 }
 
 .navbar {
-  z-index: 1;
+  z-index: 2;
 }
 
 .nav-link {
@@ -73,6 +73,42 @@ body {
   color: white;
 }
 
+
+
+/* Estilo para la tabla */
+table {
+  border-collapse: collapse;
+  height: 100%;
+}
+
+/* Estilo para el encabezado de la tabla */
+th {
+  background-color: #c57d56ff;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Estilo para la segunda fila de la tabla */
+tbody tr:nth-child(1) {
+  background-color: white;
+}
+
+/* Estilo para la tercera fila de la tabla */
+tbody tr:nth-child(2) {
+  text-align: center;
+  background-color: #c57d56ff;
+  color: white;
+  font-weight: bold;
+}
+
+/* Estilo para todas las celdas de la tabla */
+td {
+  padding: 10px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
 .form {
   background-color: #c57d56;
   padding: 20px;
