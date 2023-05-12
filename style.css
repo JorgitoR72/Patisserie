@@ -121,3 +121,7 @@ td {
   position: relative;
   z-index: 1;
 }
+
+.colores-ingredientes{
+  color: #8d4925;
+}
