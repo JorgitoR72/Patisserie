@@ -121,3 +121,65 @@ td {
   position: relative;
   z-index: 1;
 }
+/* Pagina Usuario */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#main-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f1dcc2;
+}
+
+#sidebar {
+  background-color:#c57d56 ;
+  flex: 0 0 150px; /* Ancho del div ajustado a 150px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* El contenido se alinea arriba */
+  color: white;
+  padding: 20px;
+}
+
+#logo {
+  margin-bottom: 20px;
+}
+
+#button-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: #dddddd00;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-family:  'Open Sans', sans-serif;
+  font-weight: bold;
+  font-size: larger;
+}
+
+H1{
+  text-align: center;
+  color: #8d4925;
+  font-weight: bold;
+}
+
+.fixed-button {
+  position: fixed;
+  bottom: 120px;
+  right: 120px;
+  z-index: 9999;
+  padding: 10px 30px;
+  background-color: #8d4925;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
