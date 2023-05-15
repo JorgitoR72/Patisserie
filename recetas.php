@@ -1,3 +1,21 @@
+<?php
+require_once __DIR__ . "/vendor/autoloader.php";
+
+//Paginación
+$order = isset($_GET["order"]) ? $_GET["order"] : null;
+$page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
+
+
+
+$order = isset($_GET['order']) ? $_GET['order'] : null;
+
+$page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
+
+$repository = new Logistic;
+$receta = $repository->findAll($order);
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -70,57 +88,11 @@
   </div>
   <br><br>
 
-  <div class="recetas">
-    <div class="container" style="margin-top: 250px;">
-      <div class="row">
-        <div class="col-xl-3 col-md-3 col-sm-12">
-            <img src="img/bizcocho.jpg" alt="Bizcocho de chocolate" class="img-fluid" style="height: 200px; width: 500px;">
-        </div>
-  
-        <div class="col-xl-9 col-md-9 col-sm-12" style="background-color: white; text-align: justify; color: #8d4925;">
-            <h1>Bizcocho de chocolate</h1>
-            <p>El bizcocho de Chocolate es un plato de cuchara buenísimo que no puede faltar en ningún recetario de pastelería caseras. Puedes prepararlo con el chocolate que gustes y además puedes añadirle diferentes tipos de chocolates, ¡es muy versátil y lo puedes personalizar como más te guste!</p>
-            <div style="text-align: right;">
-                <a href="ingredientes.html">
-                    <button type="button" class="btn btn-lg" style="background-color: #c57d56; color: white;">Cocinar</button>
-                </a>
-            </div>
-        </div>
-      </div><br>
-
-      <div class="row">
-        <div class="col-xl-3 col-md-3 col-sm-12">
-            <img src="img/bizcocho.jpg" alt="Bizcocho de chocolate" class="img-fluid" style="height: 200px; width: 500px;">
-        </div>
-  
-        <div class="col-xl-9 col-md-9 col-sm-12" style="background-color: white; text-align: justify; color: #8d4925;">
-            <h1>Bizcocho de chocolate</h1>
-            <p>El bizcocho de Chocolate es un plato de cuchara buenísimo que no puede faltar en ningún recetario de pastelería caseras. Puedes prepararlo con el chocolate que gustes y además puedes añadirle diferentes tipos de chocolates, ¡es muy versátil y lo puedes personalizar como más te guste!</p>
-            <div style="text-align: right;">
-                <a href="ingredientes.html">
-                    <button type="button" class="btn btn-lg" style="background-color: #c57d56; color: white;">Cocinar</button>
-                </a>
-            </div>
-        </div>
-      </div><br>
-      <div class="row">
-        <div class="col-xl-3 col-md-3 col-sm-12">
-            <img src="img/bizcocho.jpg" alt="Bizcocho de chocolate" class="img-fluid" style="height: 200px; width: 500px;">
-        </div>
-  
-        <div class="col-xl-9 col-md-9 col-sm-12" style="background-color: white; text-align: justify; color: #8d4925;">
-            <h1>Bizcocho de chocolate</h1>
-            <p>El bizcocho de Chocolate es un plato de cuchara buenísimo que no puede faltar en ningún recetario de pastelería caseras. Puedes prepararlo con el chocolate que gustes y además puedes añadirle diferentes tipos de chocolates, ¡es muy versátil y lo puedes personalizar como más te guste!</p>
-            <div style="text-align: right;">
-                <a href="ingredientes.html">
-                    <button type="button" class="btn btn-lg" style="background-color: #c57d56; color: white;">Cocinar</button>
-                </a>
-            </div>
-        </div>
-      </div>
-    </div>
-    </div>
-
+  <!-- Mostrar las recetas -->
+ <div class="recetas">
+ <div class="container" style="margin-top: 250px;">
+  <?= $repository->drawReceta($receta, $page, 3) ?>
+      
   <!-- Footer Start -->
   <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
     <div class="row pt-5">

@@ -1,62 +1,41 @@
 <?php
 
-class Misc
+Class Misc 
 {
-    static public function orderButton(?string $currentOrder): string
-    {
-        //$current = self::getSession("order", $currentOrder, "ASC");
-        $current = self::getOrder( $currentOrder);
-        $order = ($current == "ASC") ? "DESC" : "ASC";
-        $symbol = ($current == "ASC") ? "&#9650;" : "&#9660;";
-        $output = "<a href='?order=" . $order . "' class='more'>$symbol</a>";
-        return $output;
-    }
-    static public function getPage(int $page = null): int
-    {
-        if (!is_null($page)) {
-            $_SESSION["page"] = $page;
-            $current = $page;
-        } elseif (isset($_SESSION["page"])) {
-            $current = $_SESSION["page"];
-        } else {
-            $current = 1;
-        }
-        return $current;
-    }
-    static public function getOrder(string $order = null): string
-    {
-        if (!is_null($order)) {
-            $_SESSION["order"] = $order;
-            $current = $order;
-        } elseif (isset($_SESSION["order"])) {
-            $current = $_SESSION["order"];
-        } else {
-            $current = "ASC";
-        }
-        return $current;
-    }
+//Botón ordenar
+ static public function orderButton($currentOrder)
+ {
+    $current = self::getOrder($currentOrder);
+    $order = ($current == "ASC") ? "DESC" : "ASC";
+    $link = "<a href = '?order=" . $order . " '>Dificultad</a>";
+    return $link;
+ }
 
-/*     static public function getPage(int $page = null): int
-    {
-        return self::getSession("page", $page, 1);
+//Ordenar
+ static public function getOrder($order)
+ {
+    if (!is_null($order)) {
+        $current = $order;
+        
+    }else {
+        $current = "ASC";
     }
-    static public function getOrder(string $order = null): string
-    {
-        return self::getSession("order", $order, "ASC");
+    return $current;
+ }
+
+//Paginar
+ static public function getPage($page)
+ {
+    if (!is_null($page)) {
+        $current = $page;
+        
+    }else {
+        $current = 1;
     }
-    static private function getSession(string $parameterName, mixed $parameter = null, string $default): mixed
-    {
-        if (!is_null($parameter)) {
-            $_SESSION[$parameterName] = $parameter;
-            $current = $parameter;
-        } elseif (isset($_SESSION[$parameterName])) {
-            $current = $_SESSION[$parameterName];
-        } else {
-            $current = $default;
-        }
-        return $current;
-    } */
-    static public function getNavigator(?int $page = null, int $total = 0): string
+    return $current;
+ }
+ //Esto siempre es igual
+ static public function getNavigator(?int $page = null, int $total = 0): string
     {
         $output = "";
         if ($page > 1) {
