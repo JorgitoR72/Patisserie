@@ -1,3 +1,11 @@
+<?php
+/* 
+include_once __DIR__ . "/vendor/autoloader.php";
+$seguridad = new Security;
+$seguridad->checkLoggedIn();
+ */
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -37,19 +45,19 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="text-uppercase nav-link" aria-current="page" href="index.html" style="color: #f1dcc2;"><strong>Inicio</strong></a>
+            <a class="text-uppercase nav-link" aria-current="page" href="index.php" style="color: #f1dcc2;"><strong>Inicio</strong></a>
           </li>
           <li class="nav-item">
             <a class="text-uppercase nav-link" href="#" style="color: #f1dcc2;"><strong>Recetas</strong></a>
           </li>
           <li class="nav-item">
-            <a class="text-uppercase nav-link" href="sobreNosotros.html" style="color: #f1dcc2;"><strong> Sobre nosotros</strong></a>
+            <a class="text-uppercase nav-link" href="sobreNosotros.php" style="color: #f1dcc2;"><strong> Sobre nosotros</strong></a>
           </li>
         </ul>
       </div>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#" style="color: #f1dcc2;"><strong> ACCEDER </strong><img src="img/icono_chef.png" alt=""
+          <a class="nav-link" href="registro.php" style="color: #f1dcc2;"><strong> ACCEDER </strong><img src="img/icono_chef.png" alt=""
               style="height: 30px; width: 30px; "></a>
         </li>
       </ul>
