@@ -1,89 +1,54 @@
 <?php
 
-class Receta {
-    private $idReceta;
-    private $nombre;
-    private $imagen;
-    private $video;
-    private $descripcion;
-    private $preparacion;
-    private $idAutor;
-    private $idIngredientes;
+class Receta
+{
+    private int $idReceta;
+    private int $idAutor;
+    private string $nombre;
+    private string $urlImagen;
+    private string $urlVideo;
+    private string $descripcion;
+    private string $preparacion;
 
-    public function __construct($idReceta, $nombre, $imagen, $video, $descripcion, $preparacion, $idAutor, $idIngredientes) {
+
+    public function __construct(int $idReceta, int $idAutor, string $nombre, string $urlImagen, string $urlVideo, string $descripcion, string $preparacion)
+    {
         $this->idReceta = $idReceta;
+        $this->idAutor = $idAutor;
         $this->nombre = $nombre;
-        $this->imagen = $imagen;
-        $this->video = $video;
+        $this->urlImagen = $urlImagen;
+        $this->urlVideo = $urlVideo;
         $this->descripcion = $descripcion;
         $this->preparacion = $preparacion;
-        $this->idAutor = $idAutor;
-        $this->idIngredientes = $idIngredientes;
+        
     }
 
-    // getters
-    public function getIdReceta() {
+    public function getIdReceta(): int
+    {
         return $this->idReceta;
     }
-
-    public function getNombre() {
-        return $this->nombre;
-    }
-
-    public function getImagen() {
-        return $this->imagen;
-    }
-
-    public function getVideo() {
-        return $this->video;
-    }
-
-    public function getDescripcion() {
-        return $this->descripcion;
-    }
-
-    public function getPreparacion() {
-        return $this->preparacion;
-    }
-
-    public function getIdAutor() {
+    public function getIdAutor(): int
+    {
         return $this->idAutor;
     }
-
-    public function getidIngredientes() {
-        return $this->idIngredientes;
+    public function getNombre(): string
+    {
+        return $this->nombre;
     }
-
-    // setters
-    public function setIdReceta($idReceta) {
-        $this->idReceta = $idReceta;
+    public function getUrlImagen(): string
+    {
+        return $this->urlImagen;
     }
-
-    public function setNombre($nombre) {
-        $this->nombre = $nombre;
+    public function getUrlVideo(): string
+    {
+        return $this->urlVideo;
     }
-
-    public function setImagen($imagen) {
-        $this->imagen = $imagen;
+    public function getDescripcion(): string
+    {
+        return $this->descripcion;
     }
-
-    public function setVideo($video) {
-        $this->video = $video;
-    }
-
-    public function setDescripcion($descripcion) {
-        $this->descripcion = $descripcion;
-    }
-
-    public function setPreparacion($preparacion) {
-        $this->preparacion = $preparacion;
-    }
-
-    public function setIdAutor($idAutor) {
-        $this->idAutor = $idAutor;
-    }
-
-    public function setidIngredientes($idIngredientes) {
-        $this->idIngredientes = $idIngredientes;
+    public function getPreparacion(): string
+    {
+        return $this->preparacion;
     }
 }

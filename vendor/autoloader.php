@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
 
-function autoloader(string $className):void{
+function autoload(string $className):void{
     include_once __DIR__ . "/classes/$className.php";
 }
 
-spl_autoload_register("autoloader");
+spl_autoload_register("autoload");
