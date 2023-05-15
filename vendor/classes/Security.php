@@ -8,7 +8,7 @@ class Security extends Connection
         $this->connect();
         session_start();
     }
-    
+
     public function checkLoggedIn()
     {
         if (!isset($_SESSION["loggedIn"]) || !$_SESSION["loggedIn"]) {
@@ -31,7 +31,8 @@ class Security extends Connection
         }
     }
 
-    public function getUserData(){
+    public function getUserData()
+    {
         if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
             return $_SESSION["loggedIn"];
         }
@@ -55,11 +56,18 @@ class Security extends Connection
 
     private function getUser($userName)
     {
-        $sql = "SELECT * FROM users WHERE userName = '$userName'";
-        $result = $this->conn->query($sql);
-        if ($result->num_rows > 0) {
-            return $result->fetch_assoc();
-        } else {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM users WHERE userName = ?");
+            $stmt->bindParam(1, $userName);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if (count($result) > 0) {
+                return $result[0];
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            // Handle the exception here
             return false;
         }
     }
