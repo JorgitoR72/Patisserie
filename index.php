@@ -35,16 +35,16 @@
             <a class="text-uppercase nav-link" aria-current="page" href="index.html"><strong>Inicio</strong></a>
           </li>
           <li class="nav-item">
-            <a class="text-uppercase nav-link" href="recetas.html"><strong>Recetas</strong></a>
+            <a class="text-uppercase nav-link" href="recetas.php"><strong>Recetas</strong></a>
           </li>
           <li class="nav-item">
-            <a class="text-uppercase nav-link" href="sobreNosotros.html"><strong> Sobre nosotros</strong></a>
+            <a class="text-uppercase nav-link" href="sobreNosotros.php"><strong> Sobre nosotros</strong></a>
           </li>
         </ul>
       </div>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="registro.html"><strong> ACCEDER </strong><img src="img/icono_chef.png" alt=""
+          <a class="nav-link" href="registro.php"><strong> ACCEDER </strong><img src="img/icono_chef.png" alt=""
               style="height: 30px; width: 30px;"></a>
         </li>
       </ul>

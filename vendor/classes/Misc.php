@@ -7,7 +7,7 @@ Class Misc
  {
     $current = self::getOrder($currentOrder);
     $order = ($current == "ASC") ? "DESC" : "ASC";
-    $link = "<a href = '?order=" . $order . " '>Dificultad</a>";
+    $link = "<a id='boton-ordenacion' href = '?order=" . $order . " '>Ordenar Alfabeticamente</a>";
     return $link;
  }
 

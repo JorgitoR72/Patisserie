@@ -125,3 +125,8 @@ td {
 .colores-ingredientes{
   color: #8d4925;
 }
+
+#boton-ordenacion{
+  color: white;
+  text-decoration: none;
+}

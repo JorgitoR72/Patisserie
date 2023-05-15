@@ -88,7 +88,7 @@
             style="padding-bottom: 20px;">
           <div class="collapse.show" id="collapseWidthExample">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <a class="nav-link text-star" id="v-pills-home-tab" href="inicio.html" role="tab"
+              <a class="nav-link text-star" id="v-pills-home-tab" href="inicio.php" role="tab"
                 aria-selected="false"><img src="img/casa1.svg" alt="" style="padding-right: 25px;">INICIO</a>
               <br>
               <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"

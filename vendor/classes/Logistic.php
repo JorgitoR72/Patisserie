@@ -55,7 +55,7 @@ class Logistic extends Connection
             $output .=    "<br>";
         }
         //Poner numero de columnas dependiendo la tabla en este caso 7
-        $output .= "    <td colspan='7'>" . Misc::getNavigator($currentPage, $totalPages) . "</td>";
+        $output .= "    <td id='paginacion' colspan='7'>" . Misc::getNavigator($currentPage, $totalPages) . "</td>";
 
         return $output;
     }
