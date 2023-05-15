@@ -8,7 +8,7 @@ class Security extends Connection
         $this->connect();
         session_start();
     }
-
+    
     public function checkLoggedIn()
     {
         if (!isset($_SESSION["loggedIn"]) || !$_SESSION["loggedIn"]) {
