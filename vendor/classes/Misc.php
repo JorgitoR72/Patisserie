@@ -36,23 +36,30 @@ Class Misc
  }
  //Esto siempre es igual
  static public function getNavigator(?int $page = null, int $total = 0): string
-    {
-        $output = "";
-        if ($page > 1) {
-            $output .= "<a href='?page=1'>&lt;</a> ";
-            $output .= "<a href='?page=" . ($page - 1) . "'>&lt;&lt;</a> ";
-        }
-        for ($linkToPage = 1; $linkToPage <= $total; $linkToPage++) {
-            if(($linkToPage)==$page){
-                $output .= "<strong>" . ($linkToPage) . "</strong> ";
-            }else{
-                $output .= "<a href='?page=" . ($linkToPage) . "'>" . ($linkToPage) . "</a> ";
-            }
-        }
-        if ($page < $total) {
-            $output .= "<a href='?page=" . ($page + 1) . "'>&gt;&gt;</a> ";
-            $output .= "<a href='?page=" . $total . "'>&gt;</a> ";            
-        }
-        return $output;
+{
+    $output = "<div class='carousel'>";
+    
+    if ($page > 1) {
+        $output .= "<a class='carousel-link' href='?page=1'>&lt;</a> ";
+        $output .= "<a class='carousel-link' href='?page=" . ($page - 1) . "'>&lt;&lt;</a> ";
     }
+    
+    for ($linkToPage = 1; $linkToPage <= $total; $linkToPage++) {
+        if ($linkToPage == $page) {
+            $output .= "<span class='carousel-current'>" . $linkToPage . "</span> ";
+        } else {
+            $output .= "<a class='carousel-link' href='?page=" . $linkToPage . "'>" . $linkToPage . "</a> ";
+        }
+    }
+    
+    if ($page < $total) {
+        $output .= "<a class='carousel-link' href='?page=" . ($page + 1) . "'>&gt;&gt;</a> ";
+        $output .= "<a class='carousel-link' href='?page=" . $total . "'>&gt;</a> ";            
+    }
+    
+    $output .= "</div>";
+    
+    return $output;
+}
+
 }

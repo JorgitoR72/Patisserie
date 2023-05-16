@@ -135,3 +135,19 @@ td {
   color: white;
   text-decoration: none;
 }
+
+.carousel {
+  display: flex;
+  align-items: center;
+}
+
+.carousel-link {
+  margin-right: 7px;
+  text-decoration: none;
+  color: #8d4925;
+}
+
+.carousel-current {
+  font-weight: bold;
+  margin-right: 5px;
+}
