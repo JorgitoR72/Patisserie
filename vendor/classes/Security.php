@@ -6,8 +6,17 @@ class Security extends Connection
     public function __construct()
     {
         parent::connect();
-        session_start();
+        if(session_status() !== PHP_SESSION_ACTIVE) session_start();
     }
+
+    public function close_session()
+    {
+        if (isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]) {
+            header("Location: " . $this->loginPage);
+            unset($_SESSION['loggedIn']);
+            header("Location: " . $this->homePage);
+        }
+    } 
 
     public function checkLoggedIn()
     {
@@ -25,6 +34,7 @@ class Security extends Connection
             echo $_SESSION["loggedIn"];
             if ($_SESSION["loggedIn"]) {
                 header("Location: " . $this->homePage);
+                $_SESSION["loggedIn"] = $user["nombre"];
             } else {
                 return "Incorrect User Name or Password";
             }
