@@ -129,6 +129,11 @@ td {
 #boton-ordenacion{
   color: white;
   text-decoration: none;
+
+}
+
+#boton-ordenacion:hover {
+  color: #8d4925; /* Cambia el color a rojo cuando se pasa el cursor por encima */
 }
 
 #paginacion{
@@ -142,7 +147,7 @@ td {
 }
 
 .carousel-link {
-  margin-right: 7px;
+  margin-right: 10px;
   text-decoration: none;
   color: #8d4925;
 }
@@ -150,4 +155,8 @@ td {
 .carousel-current {
   font-weight: bold;
   margin-right: 5px;
+  color: white; /* Agrega este estilo para que el número aparezca en blanco */
+  background-color: rgb(158, 83, 13); /* Agrega este estilo para resaltar el número en azul */
+  padding: 5px; /* Agrega un espacio alrededor del número para mejor legibilidad */
+  border-radius: 3px; /* Agrega bordes redondeados para resaltar el número */
 }

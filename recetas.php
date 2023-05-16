@@ -71,22 +71,34 @@ $receta = $repository->findAll($order);
 
 
   <!-- banner -->
-  <div class="container d-flex flex-column align-items-center"
-    style="position: absolute; top: 10px; left: 0; right: 0; bottom: 0;">
-    <div class="banner"></div>
-    <img src="img/Logotipo Restaurante.png" alt="" class="img-fluid img-responsive">
-    <nav class="navbar">
-      <form class="search-form">
-        <div class="input-group">
-          <input class="form-control form-control-lg search-input" type="text" placeholder="Busca tu receta..."
-            aria-label="Search" style="color: #8d4925;">
-          <button class="btn btn-warning text-white" style="background-color:#8d4925;"
-            type="submit"><img src="img/lupa.png" alt=""></button>
-        </div>
-      </form>
-    </nav>
-  </div>
-  <br><br>
+  <div class="container d-flex flex-column align-items-center" style="position: absolute; top: 10px; left: 0; right: 0; bottom: 0;">
+  <div class="banner"></div>
+  <img src="img/Logotipo Restaurante.png" alt="" class="img-fluid img-responsive">
+  <nav class="navbar">
+    <form class="search-form">
+      <div class="input-group">
+        <input class="form-control form-control-lg search-input" type="text" id="searchInput" placeholder="Busca tu receta..." aria-label="Search" style="color: #8d4925;">
+        <button class="btn btn-warning text-white" style="background-color:#8d4925;" type="button" onclick="searchInPage()"><img src="img/lupa.png" alt=""></button>
+      </div>
+    </form>
+  </nav>
+</div>
+<br><br>
+<!-- Script de Java que hace la funcionabilidad de buscar las palabras que nosotros le pongamos en el buscador -->
+<script>
+  function searchInPage() {
+    var searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    var content = document.documentElement.innerHTML.toLowerCase();
+    
+    if (content.includes(searchTerm)) {
+      window.find(searchTerm);
+    } else {
+      /* En caso de que la palabra no se encuentre saltará un aviso  */
+      alert('La palabra buscada no se encontró en la página.');
+    }
+  }
+</script>
+
 
   <!-- Mostrar las recetas con ordenación y paginación -->
 
