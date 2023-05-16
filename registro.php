@@ -131,11 +131,11 @@
         </div>
       </div>
       <div id="redes-sociales">
-        <ul>
-          <li><img src="img/twitter.png"  alt="logo twitter"></li>
-          <li><img src="img/facebook.png" alt="logo facebook"></li>
-          <li><img src="img/instagram.png" alt="logo instagram"></li>
-          <li><img src="img/youtube.png" alt="logo youtube"></li>
+      <ul>
+          <li><a href="https://twitter.com" target="_blank"><img src="img/twitter.png" alt="logo twitter"></a></li>
+          <li><a href="https://www.facebook.com" target="_blank"><img src="img/facebook.png" alt="logo facebook"></a></li>
+          <li><a href="https://www.instagram.com" target="_blank"><img src="img/instagram.png" alt="logo instagram"></a></li>
+          <li><a href="https://www.youtube.com" target="_blank"><img src="img/youtube.png" alt="logo youtube"></a></li>
         </ul>
       </div>
       <iframe
