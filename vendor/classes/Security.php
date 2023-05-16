@@ -19,8 +19,10 @@ class Security extends Connection
     public function doLogin()
     {
         if (count($_POST) > 0) {
+            
             $user = $this->getUser($_POST["userName"]);
             $_SESSION["loggedIn"] = $this->checkUser($user, $_POST["userPassword"]) ? $user["nombre"] : false;
+            echo $_SESSION["loggedIn"];
             if ($_SESSION["loggedIn"]) {
                 header("Location: " . $this->homePage);
             } else {
@@ -56,9 +58,10 @@ class Security extends Connection
     private function getUser($userName)
     {
         $sql = "SELECT * FROM Usuario WHERE nombre = '$userName'";
+        //echo $sql;die;
         $result = $this->conn->query($sql);
-        if ($result->num_rows > 0) {
-            return $result->fetch_assoc();
+        if ($result && $row = $result->fetch(PDO::FETCH_ASSOC)) {
+            return $row;
         } else {
             return false;
         }
