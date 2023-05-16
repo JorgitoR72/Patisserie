@@ -85,33 +85,31 @@ $loginMessage = $seguridad->doLogin();
       </div>
       <div class="col-lg-4 col-sm-12 offset-lg-1 form text-center">
         <h2 style="color: #8d4925; font-weight: bold;">INICIAR SESIÓN</h2>
-        <form class="appnitro" method="post" action="">
-          <div class="form_description">
-            <h2>Login</h2>
-            <h4><?= $loginMessage ?></h4>
-            <p></p>
+        <form class="" method="post" action="">
+          <h4>
+            <?= $loginMessage ?>
+          </h4>
+          <div class="mb-3">
+            <label class="form-label" for="email-login"></label>
+            <input name="email-login" type="email" class="form-control" placeholder="Email">
           </div>
-          <ul>
-
-            <li id="li_1">
-              <label class="description" for="userName">User Name </label>
-              <div>
-                <input name="userName" class="element text medium" type="text" maxlength="255" value="" />
-              </div>
-            </li>
-            <li id="li_2">
-              <label class="description" for="userPassword">User Password </label>
-              <div>
-                <input name="userPassword" class="element text medium" type="password" maxlength="255" value="" />
-              </div>
-            </li>
-
-            <li class="buttons">
-
-              <input id="saveForm" class="button_text" type="submit" name="submit" value="Log In" />
-            </li>
-          </ul>
+          <div class="mb-3">
+            <label class="form-label" for="contrasena-login"></label>
+            <input name="contrasena-login" type="password" class="form-control" placeholder="Contraseña">
+          </div>
+          <button for="submit" type="submit" class="btn btn-primary btn-lg" style="background-color: #8d4925; border-color: #f1dcc2; color: #f1dcc2;">INICIAR SESIÓN</button>
+          <!-- <input id="saveForm" class="button_text" type="submit" name="submit" value="Log In" /> -->
+          <br><br><br><br>
+          <div class="mb-3 form-check text-start">
+            <input type="checkbox" class="form-check-input" id="recuerdame">
+            <label class="form-check-label" for="recuerdame" style="color: #f1dcc2; font-style: italic;">Recuérdame</label>
+          </div>
+          <br><br>
+          <div class="text-end">
+            <a href="#" style="color: #f1dcc2; font-style: italic;">¿Has olvidado tu contraseña?</a>
+          </div>
         </form>
+
       </div>
     </div>
   </div>

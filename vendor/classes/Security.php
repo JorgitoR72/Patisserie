@@ -20,8 +20,8 @@ class Security extends Connection
     {
         if (count($_POST) > 0) {
             
-            $user = $this->getUser($_POST["userName"]);
-            $_SESSION["loggedIn"] = $this->checkUser($user, $_POST["userPassword"]) ? $user["nombre"] : false;
+            $user = $this->getUser($_POST["email-login"]);
+            $_SESSION["loggedIn"] = $this->checkUser($user, $_POST["contrasena-login"]) ? $user["email"] : false;
             echo $_SESSION["loggedIn"];
             if ($_SESSION["loggedIn"]) {
                 header("Location: " . $this->homePage);
@@ -36,6 +36,8 @@ class Security extends Connection
     public function getUserData(){
         if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
             return $_SESSION["loggedIn"];
+        } else {
+            return "ACCESO";
         }
     }
 
@@ -55,9 +57,9 @@ class Security extends Connection
         return ($userPassword === $securePassword);
     }
 
-    private function getUser($userName)
+    private function getUser($email)
     {
-        $sql = "SELECT * FROM Usuario WHERE nombre = '$userName'";
+        $sql = "SELECT * FROM Usuario WHERE email = '$email'";
         //echo $sql;die;
         $result = $this->conn->query($sql);
         if ($result && $row = $result->fetch(PDO::FETCH_ASSOC)) {
