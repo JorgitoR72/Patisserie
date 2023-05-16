@@ -6,9 +6,6 @@ class RecetaIngrediente
     private int $idIngrediente;
     private int $cantidad;
 
-
-
-
     public function __construct(int $idReceta, int $idIngrediente, int $cantidad)
     {
         $this->idReceta = $idReceta;
