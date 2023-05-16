@@ -45,7 +45,7 @@
       </div>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="registro.php"><strong> ACCEDER </strong><img src="img/icono_chef.png" alt=""
+          <a class="nav-link" href="login.php"><strong> ACCEDER </strong><img src="img/icono_chef.png" alt=""
               style="height: 30px; width: 30px;"></a>
         </li>
       </ul>

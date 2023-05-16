@@ -1,11 +1,11 @@
 <?php
 class Security extends Connection
 {
-    private $loginPage = "registro.php";
+    private $loginPage = "login.php";
     private $homePage = "index.php";
     public function __construct()
     {
-        $this->connect();
+        parent::connect();
         session_start();
     }
 
@@ -19,8 +19,8 @@ class Security extends Connection
     public function doLogin()
     {
         if (count($_POST) > 0) {
-            $user = $this->getUser($_POST["emailLogin"]);
-            $_SESSION["loggedIn"] = $this->checkUser($user, $_POST["contrasenaLogin"]) ? $user["emailLogin"] : false;
+            $user = $this->getUser($_POST["userName"]);
+            $_SESSION["loggedIn"] = $this->checkUser($user, $_POST["userPassword"]) ? $user["nombre"] : false;
             if ($_SESSION["loggedIn"]) {
                 header("Location: " . $this->homePage);
             } else {
@@ -31,43 +31,35 @@ class Security extends Connection
         }
     }
 
-    public function getUserData()
-    {
+    public function getUserData(){
         if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
             return $_SESSION["loggedIn"];
         }
     }
 
-    private function checkUser($user, $contrasenaLogin)
+    private function checkUser($user, $userPassword)
     {
         if ($user) {
-            //return $this->checkPassword($user["contrasenaLogin"], $contrasenaLogin);
-            return $this->checkPassword($user["securePassword"], $contrasenaLogin);
+            return $this->checkPassword($user["contraseña"], $userPassword);
+            //return $this->checkPassword($user["securePassword"], $userPassword);
         } else {
             return false;
         }
     }
 
-    private function checkPassword($securePassword, $contrasenaLogin)
+    private function checkPassword($securePassword, $userPassword)
     {
-        return password_verify($contrasenaLogin, $securePassword);
-        //return ($contrasenaLogin === $securePassword);
+        //return password_verify($userPassword, $securePassword);
+        return ($userPassword === $securePassword);
     }
 
-    private function getUser($emailLogin)
+    private function getUser($userName)
     {
-        try {
-            $stmt = $this->conn->prepare("SELECT * FROM Usuario WHERE email = ?");
-            $stmt->bindParam(1, $emailLogin);
-            $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if (count($result) > 0) {
-                return $result[0];
-            } else {
-                return false;
-            }
-        } catch (Exception $e) {
-            // Handle the exception here
+        $sql = "SELECT * FROM Usuario WHERE nombre = '$userName'";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
             return false;
         }
     }
