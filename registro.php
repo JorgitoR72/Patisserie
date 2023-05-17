@@ -35,13 +35,13 @@
       <div class="collapse navbar-collapse" id="navbarNav" style="height: 46px;">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="text-uppercase nav-link" aria-current="page" href="index.html" style="color: #f1dcc2;"><strong>Inicio</strong></a>
+            <a class="text-uppercase nav-link" aria-current="page" href="index.php" style="color: #f1dcc2;"><strong>Inicio</strong></a>
           </li>
           <li class="nav-item">
-            <a class="text-uppercase nav-link" href="recetas.html" style="color: #f1dcc2;"><strong>Recetas</strong></a>
+            <a class="text-uppercase nav-link" href="recetas.php" style="color: #f1dcc2;"><strong>Recetas</strong></a>
           </li>
           <li class="nav-item">
-            <a class="text-uppercase nav-link" href="sobreNosotros.html" style="color: #f1dcc2;"><strong> Sobre nosotros</strong></a>
+            <a class="text-uppercase nav-link" href="sobreNosotros.php" style="color: #f1dcc2;"><strong> Sobre nosotros</strong></a>
           </li>
         </ul>
       </div>

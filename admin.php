@@ -125,7 +125,7 @@ if (count($_POST) > 0) {
           <img class="d-none d-lg-block" id="boton-toggle" src="img/Logotipo Restaurante.png" alt="Logo" style="padding-bottom: 20px;">
           <div class="collapse.show" id="collapseWidthExample">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <a class="nav-link text-star" id="v-pills-home-tab" href="index.html" role="tab" aria-selected="false"><img src="img/casa1.svg" alt="" style="padding-right: 25px;">INICIO</a>
+              <a class="nav-link text-star" id="v-pills-home-tab" href="index.php" role="tab" aria-selected="false"><img src="img/casa1.svg" alt="" style="padding-right: 25px;">INICIO</a>
               <br>
               <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" style="text-align: left;">
                 <img src="img/chef.png" alt="" style="padding-right: 25px; width: 75px;">PERFIL
