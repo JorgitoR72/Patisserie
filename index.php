@@ -96,14 +96,14 @@
                 <tbody>
                   <tr>
                     <td>
-                      <p>&#9733; Acceso a 20 recetas de pasteles variados y originales.</p>
-                      <p>&#9733; Incluye recetas de pasteles sin gluten, veganos, con frutas, con chocolate y más.</p>
-                      <p>&#9733; Ideal para personas que quieren sorprender a sus invitados o disfrutar de diferentes sabores.
+                      <p>&#9733; Acceso a 10 recetas de pasteles variados y originales.</p>
+                      <p>&#9733; Este plan es la opción más económica, lo que lo hace accesible para aquellos que buscan ahorrar dinero mientras disfrutan de nuevas recetas.</p>
+                      <p>&#9733; El plan básico se enfoca en recetas fáciles de preparar, ideales para principiantes en la cocina o personas con poco tiempo disponible.
                       </p>
                     </td>
                   </tr>
                   <tr>
-                    <td>MES 10 €</td>
+                    <td>AÑO 5 €</td>
                   </tr>
                 </tbody>
               </table>
@@ -127,12 +127,12 @@
                     <td>
                       <p>&#9733; Acceso a 20 recetas de pasteles variados y originales.</p>
                       <p>&#9733; Incluye recetas de pasteles sin gluten, veganos, con frutas, con chocolate y más.</p>
-                      <p>&#9733; Ideal para personas que quieren sorprender a sus invitados o disfrutar de diferentes sabores.
+                      <p>&#9733; El plan premium esta creado para las personas que ya tiene experiencia en la cocina y quieren seguir aprendiendo y descubriendo nuevas recetas.
                       </p>
                     </td>
                   </tr>
                   <tr>
-                    <td>MES 25 €</td>
+                    <td>AÑO 10 €</td>
                   </tr>
                 </tbody>
               </table>
@@ -154,14 +154,14 @@
                 <tbody>
                   <tr>
                     <td>
-                      <p>&#9733; Acceso a 20 recetas de pasteles variados y originales.</p>
-                      <p>&#9733; Incluye recetas de pasteles sin gluten, veganos, con frutas, con chocolate y más.</p>
-                      <p>&#9733; Ideal para personas que quieren sorprender a sus invitados o disfrutar de diferentes sabores.
+                      <p>&#9733; Acceso a 30 recetas de pasteles variados y originales.</p>
+                      <p>&#9733; Este plan se enfoca en utilizar ingredientes de alta calidad y orgánicos, lo que garantiza platos deliciosos y saludables.</p>
+                      <p>&#9733; El plan VIP esta enfocado a las personas expertas en la cocina que quieren seguir mejorando y perfeccionando la técnica de las recetas.
                       </p>
                     </td>
                   </tr>
                   <tr>
-                    <td>MES 35 €</td>
+                    <td>AÑO 20 €</td>
                   </tr>
                 </tbody>
               </table>
