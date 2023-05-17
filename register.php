@@ -65,23 +65,23 @@ $registerMessage = $seguridad->doRegister();
           </h4>
           <div class="mb-3">
             <label for="nombre-registro" class="form-label"></label>
-            <input type="text" class="form-control" name="nombre-registro" placeholder="Nombre">
+            <input type="text" class="form-control" name="nombre-registro" placeholder="Nombre" required>
           </div>
           <div class="mb-3">
             <label for="apellido" class="form-label"></label>
-            <input type="text" class="form-control" name="apellido" placeholder="Primer Apellido">
+            <input type="text" class="form-control" name="apellido" placeholder="Primer Apellido" required>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label"></label>
-            <input type="email" class="form-control" name="email" placeholder="Email">
+            <input type="email" class="form-control" name="email" placeholder="Email" required>
           </div>
           <div class="mb-3">
             <label for="contrasena" class="form-label"></label>
-            <input type="password" class="form-control" name="contrasena" placeholder="Contraseña">
+            <input type="password" class="form-control" name="contrasena" placeholder="Contraseña" required>
           </div>
           <div class="mb-3">
             <label for="confirmar-contrasena" class="form-label"></label>
-            <input type="password" class="form-control" name="confirmar-contrasena" placeholder="Confirmar contraseña">
+            <input type="password" class="form-control" name="confirmar-contrasena" placeholder="Confirmar contraseña" required>
           </div>
           <button type="submit" class="btn btn-primary btn-lg" style="background-color: #8d4925; border-color: #f1dcc2; color: #f1dcc2;">CONFIRMAR</button>
         </form>

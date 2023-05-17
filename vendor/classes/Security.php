@@ -29,14 +29,14 @@ class Security extends Connection
     public function doLogin()
     {
         if (count($_POST) > 0) {
-            var_dump($_POST);
             $user = $this->getUser($_POST["email-login"]);
             $_SESSION["loggedIn"] = $this->checkUser($user, $_POST["contrasena-login"]) ? $user["email"] : false;
+            var_dump($_SESSION["loggedIn"]);
             if ($_SESSION["loggedIn"]) {
                 header("Location: " . $this->homePage);
                 $_SESSION["loggedIn"] = $user;
             } else {
-                return "Incorrect User Name or Password";
+                return "Incorrect Credentials".'<br><a href="register.php" style="color: #f1dcc2; font-style: italic;">CREATE ACCOUNT HERE</a>';
             }
         } else {
             return null;
@@ -55,7 +55,7 @@ class Security extends Connection
     private function checkUser($user, $userPassword)
     {
         if ($user) {
-            return $this->checkPassword($user["contraseña"], $userPassword);
+            return $this->checkPassword($user["contrasena"], $userPassword);
             //return $this->checkPassword($user["securePassword"], $userPassword);
         } else {
             return false;

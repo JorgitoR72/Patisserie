@@ -56,7 +56,7 @@ $loginMessage = $seguridad->doLogin();
   <!-- Form Start -->
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-4 col-sm-12 offset-lg-1 form text-center">
+      <div class="col-lg-4 col-sm-12 form text-center">
         <h2 style="color: #8d4925; font-weight: bold;">INICIAR SESIÓN</h2>
         <form class="" method="post" action="">
           <h4>
@@ -79,7 +79,7 @@ $loginMessage = $seguridad->doLogin();
           </div>
           <br><br>
           <div class="text-end">
-            <a href="#" style="color: #f1dcc2; font-style: italic;">¿Has olvidado tu contraseña?</a>
+            <a href="register.php" style="color: #f1dcc2; font-style: italic;">CREATE ACCOUNT</a>
           </div>
         </form>
 
