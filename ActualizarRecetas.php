@@ -19,7 +19,7 @@ if (count($_POST) > 0) {
             'preparacion' => $_POST["preparacion"],
             'ingredientes' => []
         ];
-        $idIngrediente = $_POST['idIngrediente'] ;
+        $idIngrediente = $_POST['idIngrediente'];
         $nombreIngredientes = $_POST['nombreIngrediente'];
         $cantidades = $_POST['cantidad'];
 
@@ -59,15 +59,6 @@ $idPlan = $plan->getIdPlan();
 
 <body>
 
-    <?php var_dump($_POST);
-    if ($rowsAffectedI) {
-        echo "bien";
-    } else {
-        echo "mal";
-    }
-    echo var_dump($_POST)
-    ?>
-
     <div class="container">
         <form method="post" action="" class="row">
             <div class="mb-3">
@@ -91,9 +82,9 @@ $idPlan = $plan->getIdPlan();
             <div class="mb-3">
                 <label for="idPlan" class="form-label">Plan al que pertenece</label>
                 <select class="form-select" id="idPlan" name="idPlan">
-                    <option value="1" <?=$repository->obtenerSelected(1,$idPlan)?>>Básico</option>
-                    <option value="2" <?=$repository->obtenerSelected(2,$idPlan)?>>Premium</option>
-                    <option value="3" <?=$repository->obtenerSelected(3,$idPlan)?>>VIP</option>
+                    <option value="1" <?= $repository->obtenerSelected(1, $idPlan) ?>>Básico</option>
+                    <option value="2" <?= $repository->obtenerSelected(2, $idPlan) ?>>Premium</option>
+                    <option value="3" <?= $repository->obtenerSelected(3, $idPlan) ?>>VIP</option>
                 </select>
             </div>
             <div class="mb-3">

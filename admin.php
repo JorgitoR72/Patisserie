@@ -34,6 +34,7 @@ if (count($_POST) > 0) {
 
     $repository->commit();
   } catch (PDOException $e) {
+    echo "Error de base de datos: " . $e->getMessage();
   }
 }
 ?>
