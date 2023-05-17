@@ -8,24 +8,34 @@ if (count($_POST) > 0) {
     $repository->beginTransaction();
 
     $data = [
-      'idReceta' => (int) $_POST["idReceta"], // ID de la receta que se va a actualizar
-      'idAutor' => (int) $_POST["idReceta"],
+      'idAutor' => (int) $_POST["idAutor"],
       'idPlan' => (int) $_POST["idPlan"],
       'nombre' => $_POST["nombre"],
       'urlImagen' => $_POST["urlImagen"],
       'urlVideo' => $_POST["urlVideo"],
       'descripcion' => $_POST["descripcion"],
-      'preparacion' => $_POST["preparacion"]
+      'preparacion' => $_POST["preparacion"],
+      'ingredientes' => []
     ];
 
-    $rowsAffectedI = $repository->insertR($data); // Llamar al método "update" del repositorio para actualizar la receta
+    $nombreIngredientes = $_POST['nombreIngrediente'];
+    $cantidades = $_POST['cantidad'];
 
+    for ($i = 0; $i < count($nombreIngredientes); $i++) {
+      $ingrediente = [
+        'nombre' => $nombreIngredientes[$i],
+        'cantidad' => (int) $cantidades[$i]
+      ];
+      $data['ingredientes'][] = $ingrediente;
+    }
+
+    $rowsAffectedI = $repository->insertR($data); // Llamar al método "insertR" del repositorio para agregar receta
+    header('location:admin.php');
 
     $repository->commit();
   } catch (PDOException $e) {
   }
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -98,13 +108,6 @@ if (count($_POST) > 0) {
 </head>
 
 <body>
-  <?php var_dump($_POST);
-  if ($rowsAffectedI) {
-    echo "bien";
-  } else {
-    echo "mal";
-  }
-  ?>
   <div class="container-fluid full-height">
     <div class="row full-height">
       <div class="col-lg-3 col-md-12 bg">
@@ -190,110 +193,18 @@ if (count($_POST) > 0) {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>pastel</td>
-                        <td>Vip</td>
-                        <td>img1.png</td>
-                        <td>
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarReceta">Editar</button>
-                          <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">Eliminar</button>
-                        </td>
-                      </tr>
+                      
                       <?php echo $repository->drawR() ?>
+                      
                     </tbody>
                   </table>
                 </div>
-              </div>
-
-              <!-- Modal de confirmación para eliminar -->
-              <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar eliminación</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <p>¿Estás seguro de que deseas eliminar esta receta?</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                      <button type="button" class="btn btn-danger">Eliminar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Modal de Edición -->
-              <div class="modal fade" id="modalEditarReceta" tabindex="-1" aria-labelledby="modalEditarRecetaLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="modalEditarRecetaLabel">Editar Receta</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <form method="post" action="">
-                        <div class="mb-3">
-                          <label for="nombre" class="form-label">Nombre Receta</label>
-                          <input type="text" class="form-control" id="nombre" name="nombre">
-                        </div>
-                        <div class="row">
-                          <div class="col-lg-12">
-                            <div id="inputFormRow">
-                              <label for="ingredientes" class="form-label">Ingredientes</label>
-                              <div class="input-group mb-3">
-                                <input type="text" name="nombreI" class="form-control m-input" placeholder="Ingrese nombre" autocomplete="off">
-                                <input type="text" name="cantidad" class="form-control m-input" placeholder="Ingrese cantidad" autocomplete="off">
-                                <div class="input-group-append">
-                                  <button id="removeRow" type="button" class="btn btn-danger">Borrar</button>
-                                </div>
-                              </div>
-                            </div>
-                            <div id="newRow"></div>
-                            <button id="addRow" type="button" class="btn btn-info">Agregar</button>
-                          </div>
-                        </div>
-                        <div class="mb-3">
-                          <label for="preparacion" class="form-label">Preparación</label>
-                          <textarea class="form-control" id="preparacion" rows="3" name="preparacion"></textarea>
-                        </div>
-                        <div class="mb-3">
-                          <label for="descripcion" class="form-label">Descripción</label>
-                          <textarea class="form-control" id="descripcion" rows="3" name="descripcion"></textarea>
-                        </div>
-                        <div class="mb-3">
-                          <label for="idPlan" class="form-label">Plan al que pertenece</label>
-                          <select class="form-select" id="idPlan" name="idPlan">
-                            <option value="1">Básico</option>
-                            <option value="2">Premium</option>
-                            <option value="3">VIP</option>
-                          </select>
-                        </div>
-                        <div class="mb-3">
-                          <label for="urlVideo" class="form-label">URL Video</label>
-                          <input type="text" class="form-control" id="urlVideo" name="urlVideo">
-                        </div>
-                        <div class="mb-3">
-                          <label for="urlImagen" class="form-label">URL Imagen</label>
-                          <input type="text" class="form-control" id="urlImagen" name="urlImagen">
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                          <input type="hidden" name="idReceta" value="6">
-                          <input type="hidden" name="idAutor" value="6">
-                          <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarReceta">Agregar</button>
               </div>
 
               <!-- Modal de Agregar -->
               <div class="modal fade" id="modalAgregarReceta" tabindex="-1" aria-labelledby="modalAgregarRecetaLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-fullscreen-md-down">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="modalAgregarRecetaLabel">Agregar Receta</h5>
@@ -305,21 +216,15 @@ if (count($_POST) > 0) {
                           <label for="nombre" class="form-label">Nombre Receta</label>
                           <input type="text" class="form-control" id="nombre" name="nombre">
                         </div>
-                        <div class="row">
-                          <div class="col-lg-12">
-                            <div id="inputFormRow">
-                              <label for="ingredientes" class="form-label">Ingredientes</label>
-                              <div class="input-group mb-3">
-                                <input type="text" name="nombreI" class="form-control m-input" placeholder="Ingrese nombre" autocomplete="off">
-                                <input type="text" name="cantidad" class="form-control m-input" placeholder="Ingrese cantidad" autocomplete="off">
-                                <div class="input-group-append">
-                                  <button id="removeRow" type="button" class="btn btn-danger">Borrar</button>
-                                </div>
-                              </div>
+                        <div class="mb-3">
+                          <div id="ingredientes-container">
+                            <div class="ingrediente input-group mb-3">
+                              <input type="text" class="form-control m-input" name="nombreIngrediente[]" placeholder="Nombre del ingrediente">
+                              <input type="text" class="form-control m-input" name="cantidad[]" placeholder="Cantidad">
+                              <button type="button" class="btn btn-danger">Quitar</button>
                             </div>
-                            <div id="newRow"></div>
-                            <button id="addRow" type="button" class="btn btn-info">Agregar</button>
                           </div>
+                          <button type="button" id="agregar-ingrediente" class="btn btn-info">Agregar ingrediente</button>
                         </div>
                         <div class="mb-3">
                           <label for="preparacion" class="form-label">Preparación</label>
@@ -347,7 +252,6 @@ if (count($_POST) > 0) {
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                          <input type="hidden" name="idReceta" value="6">
                           <input type="hidden" name="idAutor" value="6">
                           <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
@@ -365,26 +269,42 @@ if (count($_POST) > 0) {
       </div>
     </div>
   </div>
-  </div>
-  </div>
-  </div>
-  <script type="text/javascript">
-    // agregar registro
-    $("#addRow").click(function() {
-      var html = '';
-      html += '<div id="inputFormRow">';
-      html += '<div class="input-group mb-3">';
-      html += '<input type="text" name="nombreI" class="form-control m-input" placeholder="Ingrese nombre" autocomplete="off">';
-      html += '<input type="text" name="cantidad" class="form-control m-input" placeholder="Ingrese cantidad" autocomplete="off">';
-      html += '<div class="input-group-append">';
-      html += '<button id="removeRow" type="button" class="btn btn-danger">Borrar</button>';
-      html += '</div>';
-      html += '</div>';
-      $('#newRow').append(html);
-    });
-    // borrar registro
-    $(document).on('click', '#removeRow', function() {
-      $(this).closest('#inputFormRow').remove();
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const agregarIngredienteBtn = document.getElementById('agregar-ingrediente');
+      const ingredientesContainer = document.getElementById('ingredientes-container');
+
+      agregarIngredienteBtn.addEventListener('click', function() {
+        const ingredienteDiv = document.createElement('div');
+        ingredienteDiv.classList.add('ingrediente', 'input-group', 'mb-3');
+
+        const nombreInput = document.createElement('input');
+        nombreInput.type = 'text';
+        nombreInput.classList.add('form-control', 'm-input');
+        nombreInput.name = 'nombreIngrediente[]';
+        nombreInput.placeholder = 'Nombre del ingrediente';
+
+        const cantidadInput = document.createElement('input');
+        cantidadInput.type = 'text';
+        cantidadInput.classList.add('form-control', 'm-input');
+        cantidadInput.name = 'cantidad[]';
+        cantidadInput.placeholder = 'Cantidad';
+
+        const quitarBtn = document.createElement('button');
+        quitarBtn.type = 'button';
+        quitarBtn.classList.add('btn', 'btn-danger');
+        quitarBtn.textContent = 'Quitar';
+
+        quitarBtn.addEventListener('click', function() {
+          ingredienteDiv.remove();
+        });
+
+        ingredienteDiv.appendChild(nombreInput);
+        ingredienteDiv.appendChild(cantidadInput);
+        ingredienteDiv.appendChild(quitarBtn);
+
+        ingredientesContainer.appendChild(ingredienteDiv);
+      });
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

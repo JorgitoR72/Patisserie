@@ -12,7 +12,7 @@ class RecetaIngrediente
         $this->idIngrediente = $idIngrediente;
         $this->cantidad = $cantidad;
     }
-
+    
     public function getIdReceta(): int
     {
         return $this->idReceta;
