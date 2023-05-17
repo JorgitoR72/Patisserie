@@ -3,10 +3,11 @@ class Security extends Connection
 {
     private $loginPage = "login.php";
     private $homePage = "index.php";
+    private $registerPage = "register.php";
     public function __construct()
     {
         parent::connect();
-        if(session_status() !== PHP_SESSION_ACTIVE) session_start();
+        if (session_status() !== PHP_SESSION_ACTIVE) session_start();
     }
 
     public function close_session()
@@ -16,7 +17,7 @@ class Security extends Connection
             unset($_SESSION['loggedIn']);
             header("Location: " . $this->homePage);
         }
-    } 
+    }
 
     public function checkLoggedIn()
     {
@@ -28,13 +29,12 @@ class Security extends Connection
     public function doLogin()
     {
         if (count($_POST) > 0) {
-            
+            var_dump($_POST);
             $user = $this->getUser($_POST["email-login"]);
             $_SESSION["loggedIn"] = $this->checkUser($user, $_POST["contrasena-login"]) ? $user["email"] : false;
-            echo $_SESSION["loggedIn"];
             if ($_SESSION["loggedIn"]) {
                 header("Location: " . $this->homePage);
-                $_SESSION["loggedIn"] = $user["nombre"];
+                $_SESSION["loggedIn"] = $user;
             } else {
                 return "Incorrect User Name or Password";
             }
@@ -43,9 +43,10 @@ class Security extends Connection
         }
     }
 
-    public function getUserData(){
+    public function getUserData()
+    {
         if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
-            return $_SESSION["loggedIn"];
+            return "Buenas, " . $_SESSION["loggedIn"]["nombre"] . "!";
         } else {
             return "ACCESO";
         }
@@ -78,4 +79,97 @@ class Security extends Connection
             return false;
         }
     }
+
+    //registro
+    // ejemplo de insert : INSERT INTO Usuario (idUsuario, email, nombre, apellido, contraseña, tipoUsuario, idPlan) VALUES (1, 'cliente1@example.com', 'Cliente', 'Uno', 'password1', 'Cliente', 1)
+
+    public function doRegister()
+    {
+        if (count($_POST) > 0) {
+            //creo array $data
+            $data = [];
+
+            //conseguir idUsuario
+            $stmt1 = $this->conn->query("SELECT MAX(idUsuario) AS max_id FROM Usuario");
+            $id = $stmt1->fetch(PDO::FETCH_ASSOC);
+            $data["idUsuario"] = $id["max_id"] + 1;
+
+            //email
+            $data["email"] = $_POST["email"];
+
+            //nombre
+            $data["nombre"] = $_POST["nombre-registro"];
+
+            //apellido
+            $data["apellido"] = $_POST["apellido"];
+
+            //contraseña
+            $data["contrasena"] = $_POST["contrasena"];
+
+            //tipoUsuario (default="Cliente")
+            $data["tipoUsuario"] = "Cliente";
+
+            //idPlan (default=0)
+            $data["idPlan"] = 2;
+
+            if ($this->checkPassword($_POST["contrasena"], $_POST["confirmar-contrasena"])) {
+                $consulta = $this->conn->prepare('INSERT INTO Usuario (idUsuario, email, nombre, apellido, contrasena, tipoUsuario, idPlan) VALUES (:idUsuario, :email, :nombre, :apellido, :contrasena, :tipoUsuario, :idPlan)');
+
+                // Asignar valores a los parámetros
+                $consulta->bindParam(':idUsuario', $data["idUsuario"], PDO::PARAM_INT);
+                $consulta->bindParam(':email', $data["email"], PDO::PARAM_STR);
+                $consulta->bindParam(':nombre', $data["nombre"], PDO::PARAM_STR);
+                $consulta->bindParam(':apellido', $data["apellido"], PDO::PARAM_STR);
+                $consulta->bindParam(':contrasena', $data["contrasena"], PDO::PARAM_STR);
+                $consulta->bindParam(':tipoUsuario', $data["tipoUsuario"], PDO::PARAM_STR);
+                $consulta->bindParam(':idPlan', $data["idPlan"], PDO::PARAM_INT);
+                //var_dump($consulta);die;
+                // Ejecutar la consulta y devolver true o false.
+                if ($consulta->execute()) {
+                    header("Location: " . $this->loginPage);
+                } else {
+                    return "Registro Fallido";
+                }
+            } else {
+                return "Las contraseñas no coinciden";
+            }
+        } else {
+            return null;
+        }
+    }
+
+    /* public function prepareRegister()
+    {
+        if (count($_POST) > 0) {
+            //creo array $data
+            $data = [];
+
+            //conseguir idUsuario
+            $stmt1 = $this->conn->query("SELECT MAX(idUsuario) AS max_id FROM Usuario");
+            $id = $stmt1->fetch(PDO::FETCH_ASSOC);
+            $data["idUsuario"] = $id["max_id"] + 1;
+
+            //email
+            $data["email"] = $_POST["email"];
+
+            //nombre
+            $data["nombre"] = $_POST["nombre-registro"];
+
+            //apellido
+            $data["apellido"] = $_POST["apellido"];
+
+            //contraseña
+            $data["contrasena"] = $_POST["contrasena"];
+
+            //tipoUsuario (default="Cliente")
+            $data["tipoUsuario"] = "Cliente";
+
+            //idPlan (default=0)
+            $data["idPlan"] = 2;
+
+            return $data;
+        } else {
+            return null;
+        }
+    } */
 }

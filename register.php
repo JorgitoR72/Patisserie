@@ -2,7 +2,8 @@
 
 include_once __DIR__ . "/vendor/autoloader.php";
 $seguridad = new Security;
-$loginMessage = $seguridad->doLogin();
+$registerMessage = $seguridad->doRegister();
+/* <?= $registerMessage ?> */
 ?>
 
 <!DOCTYPE html>
@@ -56,33 +57,34 @@ $loginMessage = $seguridad->doLogin();
   <!-- Form Start -->
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-4 col-sm-12 offset-lg-1 form text-center">
-        <h2 style="color: #8d4925; font-weight: bold;">INICIAR SESIÓN</h2>
+      <div class="col-lg-4 col-sm-12 form text-center">
+        <h2 style="color: #8d4925; font-weight: bold;">REGISTRO</h2>
         <form class="" method="post" action="">
           <h4>
-            <?= $loginMessage ?>
+            <?=$registerMessage?>
           </h4>
           <div class="mb-3">
-            <label class="form-label" for="email-login"></label>
-            <input name="email-login" type="email" class="form-control" placeholder="Email">
+            <label for="nombre-registro" class="form-label"></label>
+            <input type="text" class="form-control" name="nombre-registro" placeholder="Nombre">
           </div>
           <div class="mb-3">
-            <label class="form-label" for="contrasena-login"></label>
-            <input name="contrasena-login" type="password" class="form-control" placeholder="Contraseña">
+            <label for="apellido" class="form-label"></label>
+            <input type="text" class="form-control" name="apellido" placeholder="Primer Apellido">
           </div>
-          <button for="submit" type="submit" class="btn btn-primary btn-lg" style="background-color: #8d4925; border-color: #f1dcc2; color: #f1dcc2;">INICIAR SESIÓN</button>
-          <!-- <input id="saveForm" class="button_text" type="submit" name="submit" value="Log In" /> -->
-          <br><br><br><br>
-          <div class="mb-3 form-check text-start">
-            <input type="checkbox" class="form-check-input" id="recuerdame">
-            <label class="form-check-label" for="recuerdame" style="color: #f1dcc2; font-style: italic;">Recuérdame</label>
+          <div class="mb-3">
+            <label for="email" class="form-label"></label>
+            <input type="email" class="form-control" name="email" placeholder="Email">
           </div>
-          <br><br>
-          <div class="text-end">
-            <a href="#" style="color: #f1dcc2; font-style: italic;">¿Has olvidado tu contraseña?</a>
+          <div class="mb-3">
+            <label for="contrasena" class="form-label"></label>
+            <input type="password" class="form-control" name="contrasena" placeholder="Contraseña">
           </div>
+          <div class="mb-3">
+            <label for="confirmar-contrasena" class="form-label"></label>
+            <input type="password" class="form-control" name="confirmar-contrasena" placeholder="Confirmar contraseña">
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="background-color: #8d4925; border-color: #f1dcc2; color: #f1dcc2;">CONFIRMAR</button>
         </form>
-
       </div>
     </div>
   </div>
