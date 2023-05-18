@@ -56,6 +56,7 @@ if ($tipoUsuario) {
         <li class="nav-item">
           <a class="nav-link" href="<?=$pagina?>"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt="" style="height: 30px; width: 30px;"></a>
         </li>
+        <?= $seguridad->createExit() ?>
       </ul>
     </div>
   </nav>
