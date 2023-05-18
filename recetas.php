@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/vendor/autoloader.php";
-
+$seguridad = new Security;
+$seguridad->checkLoggedIn();
 //Paginación
 $order = isset($_GET["order"]) ? $_GET["order"] : null;
 $page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
@@ -14,8 +15,6 @@ $page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
 $repository = new Logistic;
 $receta = $repository->findAll($order);
 
-$seguridad = new Security;
-$seguridad->checkLoggedIn();
 
 ?>
 
