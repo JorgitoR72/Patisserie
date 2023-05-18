@@ -3,7 +3,12 @@
 include_once __DIR__ . "/vendor/autoloader.php";
 $seguridad = new Security;
 $acceso = $seguridad->getUserData();
-
+$tipoUsuario = $seguridad->checkAdmin();
+if ($tipoUsuario) {
+  $pagina = "admin.php";
+} else {
+  $pagina = "user.php";
+}
 
 ?>
 <!DOCTYPE html>
@@ -49,7 +54,7 @@ $acceso = $seguridad->getUserData();
       </div>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="admin.php"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt="" style="height: 30px; width: 30px;"></a>
+          <a class="nav-link" href="<?=$pagina?>"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt="" style="height: 30px; width: 30px;"></a>
         </li>
       </ul>
     </div>

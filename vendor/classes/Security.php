@@ -26,6 +26,15 @@ class Security extends Connection
         }
     }
 
+    public function checkAdmin()
+    {
+        if ($_SESSION["tipoUsuario"]=="Autor") {
+            return true;
+          } else {
+            return false;
+          }
+    }
+
     public function doLogin()
     {
         if (count($_POST) > 0) {
@@ -35,6 +44,7 @@ class Security extends Connection
             if ($_SESSION["loggedIn"]) {
                 header("Location: " . $this->homePage);
                 $_SESSION["loggedIn"] = $user;
+                $_SESSION["tipoUsuario"] = $user["tipoUsuario"];
             } else {
                 return "Incorrect Credentials".'<br><a href="register.php" style="color: #f1dcc2; font-style: italic;">CREATE ACCOUNT HERE</a>';
             }
