@@ -4,7 +4,7 @@ class Security extends Connection
     private $loginPage = "login.php";
     private $homePage = "index.php";
     private $registerPage = "register.php";
-    
+
     public function __construct()
     {
         parent::connect();
@@ -29,12 +29,16 @@ class Security extends Connection
 
     public function checkAdmin()
     {
-        if ($_SESSION["loggedIn"]["tipoUsuario"]=="Autor") {
+        if ($_SESSION["loggedIn"]["tipoUsuario"] == "Autor") {
             return true;
-          } else {
+        } else {
             return false;
-          }
+        }
     }
+
+
+
+
 
     public function doLogin()
     {
@@ -45,8 +49,9 @@ class Security extends Connection
             if ($_SESSION["loggedIn"]) {
                 header("Location: " . $this->homePage);
                 $_SESSION["loggedIn"] = $user;
+                /* $_SESSION["loggedIn"]["message"] = 1; */
             } else {
-                return "Incorrect Credentials".'<br><a href="register.php" style="color: #f1dcc2; font-style: italic;">CREATE ACCOUNT HERE</a>';
+                return "Incorrect Credentials" . '<br><a href="register.php" style="color: #f1dcc2; font-style: italic;">CREATE ACCOUNT HERE</a>';
             }
         } else {
             return null;
@@ -56,7 +61,12 @@ class Security extends Connection
     public function getUserData()
     {
         if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
-            return $_SESSION["loggedIn"]["nombre"];
+            if ($_SESSION["loggedIn"] && !$_SESSION["loggedIn"]["message"]) {
+                $_SESSION["loggedIn"]["message"] = 1;
+                return "Buenas, ".$_SESSION["loggedIn"]["nombre"]."!";
+            } else {
+                return $_SESSION["loggedIn"]["nombre"];
+            }
         } else {
             return "ACCESO";
         }
@@ -98,7 +108,7 @@ class Security extends Connection
         if (count($_POST) > 0) {
             //creo array $data
             $data = [];
-            
+
             //conseguir idUsuario
             $stmt1 = $this->conn->query("SELECT MAX(idUsuario) AS max_id FROM Usuario");
             $id = $stmt1->fetch(PDO::FETCH_ASSOC);
@@ -132,7 +142,7 @@ class Security extends Connection
                 $consulta->bindParam(':apellido', $data["apellido"], PDO::PARAM_STR);
                 $consulta->bindParam(':contrasena', $data["contrasena"], PDO::PARAM_STR);
                 $consulta->bindParam(':tipoUsuario', $data["tipoUsuario"], PDO::PARAM_STR);
-                $consulta->bindParam(':idPlan', $data["idPlan"], PDO::PARAM_INT); 
+                $consulta->bindParam(':idPlan', $data["idPlan"], PDO::PARAM_INT);
                 //var_dump($consulta);die;
                 // Ejecutar la consulta y devolver true o false.
                 if ($consulta->execute()) {
@@ -152,9 +162,8 @@ class Security extends Connection
     {
         if (!isset($_SESSION["loggedIn"]) || !$_SESSION["loggedIn"]) {
             return null;
-        } else  {
+        } else {
             return '<li class="nav-item"><a class="nav-link" href="exit.php"><img src="img/salida2.png" alt="" style="height: 30px; width: 30px;"></a></li>';
         }
     }
-
 }
