@@ -3,8 +3,20 @@ require_once __DIR__ . "/vendor/autoloader.php";
 $seguridad = new Security;
 $seguridad->checkLoggedIn();
 $acceso = $seguridad->getUserData();
+$tipoUsuario = $seguridad->checkAdmin();
+if ($tipoUsuario) {
+  $pagina = "admin.php";
+} else {
+  $pagina = "user.php";
+}
 //Paginación
 $order = isset($_GET["order"]) ? $_GET["order"] : null;
+$page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
+
+
+
+$order = isset($_GET['order']) ? $_GET['order'] : null;
+
 $page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
 
 $repository = new Logistic;
@@ -59,9 +71,10 @@ $receta = $repository->findAll($order);
       </div>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="registro.php"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt=""
+          <a class="nav-link" href="<?=$pagina?>"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt=""
               style="height: 30px; width: 30px;"></a>
         </li>
+        <?= $seguridad->createExit() ?>
       </ul>
     </div>
   </nav>
@@ -104,7 +117,7 @@ $receta = $repository->findAll($order);
  <div class="container" style="margin-top: 250px;">
  <button class="btn btn-light " style="margin-bottom: 50px; background-color: #c57d56;"><?= Misc::orderButton($order)?></button>
   <?= $repository->drawReceta($receta, $page, 5) ?>
- </div>
+
  
   <!-- Footer Start -->
   <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
