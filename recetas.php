@@ -14,6 +14,9 @@ $page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
 $repository = new Logistic;
 $receta = $repository->findAll($order);
 
+$seguridad = new Security;
+$seguridad->checkLoggedIn();
+
 ?>
 
 <!DOCTYPE html>
