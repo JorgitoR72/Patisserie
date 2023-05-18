@@ -48,7 +48,7 @@ class Logistic extends Connection
             $output .= "    <h1>" . $receta->getNombre() . "</h1>";
             $output .= "    <p>" . $receta->getDescripcion() . "</p>";
             $output .= "<div style='text-align: right;'>";
-            $output .=    "<a href='ingredientes.php'>";
+            $output .=    "<a href='ingredientes.php?id=" . $receta->getIdReceta() . "'>";
             $output .=        "<button type='button' class='btn btn-lg' style='background-color: #c57d56; color: white;'>Cocinar</button>";
             $output .=    "</a>";
             $output .= "</div>";
@@ -62,7 +62,7 @@ class Logistic extends Connection
         return $output;
     }
 
-                                                                                                                                                    
+
     public function insertR(array $data): int|bool
     {
         $stmt1 = $this->conn->query("SELECT MAX(idReceta) AS max_id FROM Receta");
@@ -175,7 +175,9 @@ class Logistic extends Connection
         $stmt3->bindParam(':idReceta', $idReceta, PDO::PARAM_INT);
         $result3 = $stmt3->execute();
 
-        $stmt4 = $this->conn->prepare("DELETE FROM `ingrediente` WHERE `idIngrediente` IN (" . implode(',', $ingredientes) . ")");
+        // Eliminar valoraciones relacionadas
+        $stmt4 = $this->conn->prepare("DELETE FROM `valoracion` WHERE `idReceta` = :idReceta");
+        $stmt4->bindParam(':idReceta', $idReceta, PDO::PARAM_INT);
         $result4 = $stmt4->execute();
 
         // Eliminar receta
@@ -190,6 +192,7 @@ class Logistic extends Connection
 
         return false;
     }
+
 
     public function drawR()
     {
@@ -238,12 +241,16 @@ class Logistic extends Connection
         $row = $stmt->fetch(PDO::FETCH_NUM);
         return new PlanReceta(...$row);
     }
-    function obtenerSelected($id, $idSeleccionado)
+    public function obtenerSelected($id, $idSeleccionado)
     {
         if ($id == $idSeleccionado) {
             return 'selected';
         } else {
             return '';
         }
+    }
+
+    public function drawCocinar($idReceta)
+    {
     }
 }
