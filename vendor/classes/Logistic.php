@@ -70,7 +70,7 @@ class Logistic extends Connection
         $maxid = $id["max_id"] + 1;
 
         // Insertar receta
-        $stmt = $this->conn->prepare("INSERT INTO `receta`(`idReceta`, `idAutor`, `nombre`, `urlImagen`, `urlVideo`, `descripción`, `preparación`) VALUES (:idReceta,:idAutor,:nombre,:urlImagen,:urlVideo,:descripcion,:preparacion)");
+        $stmt = $this->conn->prepare("INSERT INTO `receta`(`idReceta`, `idAutor`, `nombre`, `urlImagen`, `urlVideo`, `descripcion`, `preparacion`) VALUES (:idReceta,:idAutor,:nombre,:urlImagen,:urlVideo,:descripcion,:preparacion)");
         $stmt->bindParam(':idReceta', $maxid, PDO::PARAM_INT);
         $stmt->bindParam(':idAutor', $data["idAutor"], PDO::PARAM_INT);
         $stmt->bindParam(':nombre', $data["nombre"], PDO::PARAM_STR);
@@ -128,7 +128,7 @@ class Logistic extends Connection
     }
     public function updateR(array $data): int|bool
     {
-        $stmtUpdate = $this->conn->prepare("UPDATE Receta SET nombre = :nombre, urlImagen = :urlImagen, urlVideo = :urlVideo, descripción = :descripcion, preparación = :preparacion WHERE idReceta = :id");
+        $stmtUpdate = $this->conn->prepare("UPDATE Receta SET nombre = :nombre, urlImagen = :urlImagen, urlVideo = :urlVideo, descripcion = :descripcion, preparacion = :preparacion WHERE idReceta = :id");
 
         $stmtUpdate->bindParam(":nombre", $data['nombre'], PDO::PARAM_STR);
         $stmtUpdate->bindParam(":urlImagen", $data['urlImagen'], PDO::PARAM_STR);
