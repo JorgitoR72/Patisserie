@@ -5,11 +5,11 @@ require_once __DIR__ . "/vendor/autoloader.php";
 $repository = new Logistic;
 $seguridad = new Security;
 $seguridad->checkLoggedIn();
-if ($tipoUsuario) {
+/* if ($tipoUsuario) {
   header("Location: " . "admin.php");
 } else {
   header("Location: " . "user.php");
-}
+} */
 if (count($_POST) > 0) {
   try {
     $repository->beginTransaction();
