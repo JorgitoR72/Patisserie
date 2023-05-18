@@ -45,6 +45,7 @@ class Security extends Connection
                 header("Location: " . $this->homePage);
                 $_SESSION["loggedIn"] = $user;
                 $_SESSION["tipoUsuario"] = $user["tipoUsuario"];
+                $_SESSION["idPlan"] = $user["idPlan"];
             } else {
                 return "Incorrect Credentials".'<br><a href="register.php" style="color: #f1dcc2; font-style: italic;">CREATE ACCOUNT HERE</a>';
             }
