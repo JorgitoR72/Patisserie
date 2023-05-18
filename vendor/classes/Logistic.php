@@ -9,11 +9,13 @@ class Logistic extends Connection
     }
 
     /* La función findAll devuelve un array de objetos Receta. Recupera todas las filas de la tabla receta de la base de datos ordenándolas por el campo nombre en el orden especificado en el parámetro $order. El valor de $order es opcional y si no se proporciona, se utiliza el valor predeterminado definido en la función Misc::getOrder(). */
-    public function findAll(?string $order): array
+    public function findAll(?string $order, ?string $search): array
     {
         $currentOrder = Misc::getOrder($order);
         $result = [];
-        $stmt = $this->conn->query("SELECT * FROM receta ORDER BY nombre $currentOrder  ");
+        $stmt = $this->conn->prepare("SELECT * FROM receta WHERE nombre LIKE :search ORDER BY nombre $currentOrder");
+        $stmt->bindValue(':search', '%' . $search . '%');
+        $stmt->execute();
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $result[] = new Receta(...$row);
@@ -272,7 +274,7 @@ class Logistic extends Connection
             $output .= '<p>' . nl2br($row1['preparacion']) . '</p>';
             $output .= '</div>';
             $output .= '<div class="col-xl-6 col-md-12">';
-            $output .= '<iframe width="100%" height="315" src="'.$row1['urlVideo'].'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+            $output .= '<iframe width="100%" height="315" src="' . $row1['urlVideo'] . '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
         }
 
         $output .= '</div>';
