@@ -41,8 +41,8 @@ class Logistic extends Connection
             $receta = $recetas[$element];
 
             $output .=      "<div class='row'>";
-            $output .=          "<div class='col-xl-3 col-md-3 col-sm-12'>";
-            $output .=            "<img src='" . $receta->getUrlImagen() . "' alt='Bizcocho de chocolate' class='img-fluid' style='height: 200px; width: 500px;'>";
+            $output .=          "<div class='col-xl-3 col-md-3 col-sm-12' style='padding: 0;'>";
+            $output .=            "<img src='" . $receta->getUrlImagen() . "' alt='" . $receta->getNombre() . "' class='img-fluid' style='height: 200px; width: 100%; object-fit: cover;'>";
             $output .=         "</div>";
             $output .=         "<div class='col-xl-9 col-md-9 col-sm-12' style='background-color: white; text-align: justify; color: #8d4925;'>";
             $output .= "    <h1>" . $receta->getNombre() . "</h1>";
@@ -175,9 +175,7 @@ class Logistic extends Connection
         $stmt3->bindParam(':idReceta', $idReceta, PDO::PARAM_INT);
         $result3 = $stmt3->execute();
 
-        // Eliminar valoraciones relacionadas
-        $stmt4 = $this->conn->prepare("DELETE FROM `valoracion` WHERE `idReceta` = :idReceta");
-        $stmt4->bindParam(':idReceta', $idReceta, PDO::PARAM_INT);
+        $stmt4 = $this->conn->prepare("DELETE FROM `ingrediente` WHERE `idIngrediente` IN (" . implode(',', $ingredientes) . ")");
         $result4 = $stmt4->execute();
 
         // Eliminar receta
@@ -192,7 +190,6 @@ class Logistic extends Connection
 
         return false;
     }
-
 
     public function drawR()
     {
@@ -250,7 +247,36 @@ class Logistic extends Connection
         }
     }
 
-    public function drawCocinar($idReceta)
+    public function drawCocinar(int $idReceta, string $tipo)
     {
+        $sql = "SELECT i.nombre, ri.Cantidad FROM Ingrediente i INNER JOIN RecetaIngrediente ri ON i.idIngrediente = ri.idIngrediente WHERE ri.idReceta = $idReceta";
+        $result1 = $this->conn->query("SELECT * FROM receta WHERE idReceta = $idReceta");
+        $row1 = $result1->fetch(PDO::FETCH_ASSOC);
+        $result = $this->conn->query($sql);
+        $output = '<div class="row" id="sobre-nosotros">';
+        $output .= '<div class="col-xl-6 col-md-12">';
+
+        if ($tipo == 'ingredientes') {
+            $output .= '<h1>' . $row1['nombre'] . '</h1>';
+            $output .= '<ul>';
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $output .= "<li>" . $row['nombre'] . " " . $row['Cantidad'] . "</li>";
+            }
+            $output .= '</ul>';
+            $output .= '</div>';
+            $output .= '<div class="col-xl-6 col-md-12">';
+            $output .= '<img src="' . $row1['urlImagen'] . '" alt="Historia Empresa" class="img-fluid">';
+        } elseif ($tipo == 'preparacion') {
+            $output .= '<h1>Preparación</h1>';
+            //nl2br — Inserta saltos de línea HTML antes de todas las nuevas líneas de un string
+            $output .= '<p>' . nl2br($row1['preparacion']) . '</p>';
+            $output .= '</div>';
+            $output .= '<div class="col-xl-6 col-md-12">';
+            $output .= '<iframe width="100%" height="315" src="'.$row1['urlVideo'].'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+        }
+
+        $output .= '</div>';
+        $output .= '</div>';
+        return $output;
     }
 }

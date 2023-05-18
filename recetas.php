@@ -107,8 +107,8 @@ $receta = $repository->findAll($order);
 
 
  <div class="recetas">
- <div class="container" style="margin-top: 250px;">
- <button class="btn btn-light " style="margin-bottom: 50px; background-color: #c57d56;"><?= Misc::orderButton($order)?></button>
+ <div class="container" style="margin-top: 230px;">
+ <button class="btn btn-light " style="margin-bottom: 20px; background-color: #c57d56;"><?= Misc::orderButton($order)?></button>
   <?= $repository->drawReceta($receta, $page, 5) ?>
  </div>
  
