@@ -110,7 +110,7 @@ $receta = $repository->findAll($order);
  <div class="container" style="margin-top: 250px;">
  <button class="btn btn-light " style="margin-bottom: 50px; background-color: #c57d56;"><?= Misc::orderButton($order)?></button>
   <?= $repository->drawReceta($receta, $page, 5) ?>
-
+ </div>
  
   <!-- Footer Start -->
   <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
