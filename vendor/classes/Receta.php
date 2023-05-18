@@ -7,19 +7,19 @@ class Receta
     private string $nombre;
     private string $urlImagen;
     private string $urlVideo;
-    private string $descripción;
-    private string $preparación;
+    private string $descripcion;
+    private string $preparacion;
 
 
-    public function __construct(int $idReceta, int $idAutor, string $nombre, string $urlImagen, string $urlVideo, string $descripción, string $preparación)
+    public function __construct(int $idReceta, int $idAutor, string $nombre, string $urlImagen, string $urlVideo, string $descripcion, string $preparacion)
     {
         $this->idReceta = $idReceta;
         $this->idAutor = $idAutor;
         $this->nombre = $nombre;
         $this->urlImagen = $urlImagen;
         $this->urlVideo = $urlVideo;
-        $this->descripción = $descripción;
-        $this->preparación = $preparación;
+        $this->descripcion = $descripcion;
+        $this->preparacion = $preparacion;
         
     }
 
@@ -45,10 +45,10 @@ class Receta
     }
     public function getDescripcion(): string
     {
-        return $this->descripción;
+        return $this->descripcion;
     }
     public function getPreparacion(): string
     {
-        return $this->preparación;
+        return $this->preparacion;
     }
 }

@@ -1,3 +1,43 @@
+<?php
+
+declare(strict_types=1);
+require_once __DIR__ . "/vendor/autoloader.php";
+$repository = new Logistic;
+if (count($_POST) > 0) {
+  try {
+    $repository->beginTransaction();
+
+    $data = [
+      'idAutor' => (int) $_POST["idAutor"],
+      'idPlan' => (int) $_POST["idPlan"],
+      'nombre' => $_POST["nombre"],
+      'urlImagen' => $_POST["urlImagen"],
+      'urlVideo' => $_POST["urlVideo"],
+      'descripcion' => $_POST["descripcion"],
+      'preparacion' => $_POST["preparacion"],
+      'ingredientes' => []
+    ];
+
+    $nombreIngredientes = $_POST['nombreIngrediente'];
+    $cantidades = $_POST['cantidad'];
+
+    for ($i = 0; $i < count($nombreIngredientes); $i++) {
+      $ingrediente = [
+        'nombre' => $nombreIngredientes[$i],
+        'cantidad' => (int) $cantidades[$i]
+      ];
+      $data['ingredientes'][] = $ingrediente;
+    }
+
+    $rowsAffectedI = $repository->insertR($data); // Llamar al método "insertR" del repositorio para agregar receta
+    header('location:admin.php');
+
+    $repository->commit();
+  } catch (PDOException $e) {
+    echo "Error de base de datos: " . $e->getMessage();
+  }
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -6,8 +46,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Menú Vertical Responsivo</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <style>
     body {
       font-family: 'Open Sans', sans-serif;
@@ -76,34 +116,26 @@
           <div class="col-md-12 d-lg-none">
             <nav class="navbar navbar-dark bg">
               <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseWidthExample" aria-controls="collapseWidthExample" aria-expanded="false"
-                  aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-controls="collapseWidthExample" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
               </div>
             </nav>
           </div>
-          <img class="d-none d-lg-block" id="boton-toggle" src="img/Logotipo Restaurante.png" alt="Logo"
-            style="padding-bottom: 20px;">
+          <img class="d-none d-lg-block" id="boton-toggle" src="img/Logotipo Restaurante.png" alt="Logo" style="padding-bottom: 20px;">
           <div class="collapse.show" id="collapseWidthExample">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <a class="nav-link text-star" id="v-pills-home-tab" href="inicio.php" role="tab"
-                aria-selected="false"><img src="img/casa1.svg" alt="" style="padding-right: 25px;">INICIO</a>
+              <a class="nav-link text-star" id="v-pills-home-tab" href="index.php" role="tab" aria-selected="false"><img src="img/casa1.svg" alt="" style="padding-right: 25px;">INICIO</a>
               <br>
-              <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-                type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"
-                style="text-align: left;">
+              <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" style="text-align: left;">
                 <img src="img/chef.png" alt="" style="padding-right: 25px; width: 75px;">PERFIL
               </button>
               <br>
-              <button class="nav-link" id="v-pills-exit-tab" data-bs-toggle="pill" data-bs-target="#v-pills-exit"
-                type="button" role="tab" aria-controls="v-pills-exit" aria-selected="false" style="text-align: left;">
+              <button class="nav-link active" id="v-pills-exit-tab" data-bs-toggle="pill" data-bs-target="#v-pills-exit" type="button" role="tab" aria-controls="v-pills-exit" aria-selected="false" style="text-align: left;">
                 <img src="img/recetas.png" alt="" style="padding-right: 25px; width: 75px;">RECETAS
               </button>
               <br>
-              <a class="nav-link text-start" id="v-pills-exit-tab" href="salir.html" role="tab"
-                aria-selected="false"><img src="img/salida.png" alt="" style="padding-right: 25px;">SALIR</a>
+              <a class="nav-link text-start" id="v-pills-exit-tab" href="salir.html" role="tab" aria-selected="false"><img src="img/salida.png" alt="" style="padding-right: 25px;">SALIR</a>
             </div>
           </div>
         </div>
@@ -127,8 +159,7 @@
                   <br>
                   <h2>SUSCRIPCION</h2>
                   <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                      data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                       Seleccionar plan
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -148,174 +179,136 @@
                 </div>
               </div>
             </div>
-            <div class="tab-pane fade" id="v-pills-exit" role="tabpanel" aria-labelledby="v-pills-exit-tab">
-              <div class="container">
+            <div class="tab-pane fade show active" id="v-pills-exit" role="tabpanel" aria-labelledby="v-pills-exit-tab">
+              <div class="container" style="padding: 0;">
                 <h1>RECETAS</h1>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>IdReceta</th>
-                      <th>Nombre</th>
-                      <th>Plan</th>
-                      <th>Imagen</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>pastel</td>
-                      <td>Vip</td>
-                      <td>img1.png</td>
-                      <td>
-                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                          data-bs-target="#editarModal">Editar</button>
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                          data-bs-target="#confirmDeleteModal">Eliminar</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>tarta</td>
-                      <td>Basico</td>
-                      <td>img2.png</td>
-                      <td>
-                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                          data-bs-target="#editarModal">Editar</button>
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                          data-bs-target="#confirmDeleteModal">Eliminar</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>pan</td>
-                      <td>Basico</td>
-                      <td>img3.png</td>
-                      <td>
-                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                          data-bs-target="#editarModal">Editar</button>
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                          data-bs-target="#confirmDeleteModal">Eliminar</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>pastel</td>
-                      <td>Vip</td>
-                      <td>img1.png</td>
-                      <td>
-                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                          data-bs-target="#editarModal">Editar</button>
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                          data-bs-target="#confirmDeleteModal">Eliminar</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <!-- Modal de confirmación para eliminar -->
-              <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar eliminación</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <p>¿Estás seguro de que deseas eliminar esta receta?</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                      <button type="button" class="btn btn-danger">Eliminar</button>
-                    </div>
-                  </div>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>IdReceta</th>
+                        <th>Nombre</th>
+                        <th>Plan</th>
+                        <th>Imagen</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      <?php echo $repository->drawR() ?>
+                      
+                    </tbody>
+                  </table>
                 </div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarReceta">Agregar</button>
               </div>
 
-              <!-- Modal de Edición -->
-              <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
+              <!-- Modal de Agregar -->
+              <div class="modal fade" id="modalAgregarReceta" tabindex="-1" aria-labelledby="modalAgregarRecetaLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen-md-down">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="editarModalLabel">Editar Receta</h5>
+                      <h5 class="modal-title" id="modalAgregarRecetaLabel">Agregar Receta</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <div class="container">
-                        <form>
-                          <div class="form-group">
-                            <label for="nombreReceta">Nombre de la Receta:</label>
-                            <input type="text" class="form-control" id="nombreReceta"
-                              placeholder="Ingrese el nombre de la receta" required>
-                          </div>
-                          <div class="form-group">
-                            <label for="preparacion">Preparación:</label>
-                            <textarea class="form-control" id="preparacion" rows="3"
-                              placeholder="Ingrese los pasos de preparación" required></textarea>
-                          </div>
-                          <div class="form-group">
-                            <label for="descripcion">Descripción:</label>
-                            <textarea class="form-control" id="descripcion" rows="3"
-                              placeholder="Ingrese una descripción breve" required></textarea>
-                          </div>
-                          <div class="form-group">
-                            <label for="ingredientes">Ingredientes:</label>
-                            <div id="ingredientes">
-                              <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Nombre del ingrediente" required>
-                                <input type="text" class="form-control" placeholder="Descripción del ingrediente"
-                                  required>
-                                <div class="input-group-append">
-                                  <button class="btn btn-primary" type="button"
-                                    onclick="agregarIngrediente()">Agregar</button>
-                                  <button class="btn btn-danger" type="button"
-                                    onclick="quitarIngrediente()">Quitar</button>
-                                </div>
-                              </div>
+                      <form method="post" action="">
+                        <div class="mb-3">
+                          <label for="nombre" class="form-label">Nombre Receta</label>
+                          <input type="text" class="form-control" id="nombre" name="nombre">
+                        </div>
+                        <div class="mb-3">
+                          <div id="ingredientes-container">
+                            <div class="ingrediente input-group mb-3">
+                              <input type="text" class="form-control m-input" name="nombreIngrediente[]" placeholder="Nombre del ingrediente">
+                              <input type="text" class="form-control m-input" name="cantidad[]" placeholder="Cantidad">
+                              <button type="button" class="btn btn-danger">Quitar</button>
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label for="plan">Plan al que pertenece:</label>
-                            <select class="form-control" id="plan" required>
-                              <option value="">Seleccione un plan</option>
-                              <option value="1">Plan 1</option>
-                              <option value="2">Plan 2</option>
-                              <option value="3">Plan 3</option>
-                            </select>
-                          </div>
-                          <div class="form-group">
-                            <label for="urlVideo">URL del Video:</label>
-                            <input type="text" class="form-control" id="urlVideo"
-                              placeholder="Ingrese la URL del video">
-                          </div>
-                          <div class="form-group">
-                            <label for="urlImagen">URL de la Imagen:</label>
-                            <input type="text" class="form-control" id="urlImagen"
-                              placeholder="Ingrese la URL de la imagen">
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Guardar</button>
+                          <button type="button" id="agregar-ingrediente" class="btn btn-info">Agregar ingrediente</button>
+                        </div>
+                        <div class="mb-3">
+                          <label for="preparacion" class="form-label">Preparación</label>
+                          <textarea class="form-control" id="preparacion" rows="3" name="preparacion"></textarea>
+                        </div>
+                        <div class="mb-3">
+                          <label for="descripcion" class="form-label">Descripción</label>
+                          <textarea class="form-control" id="descripcion" rows="3" name="descripcion"></textarea>
+                        </div>
+                        <div class="mb-3">
+                          <label for="idPlan" class="form-label">Plan al que pertenece</label>
+                          <select class="form-select" id="idPlan" name="idPlan">
+                            <option value="1">Básico</option>
+                            <option value="2">Premium</option>
+                            <option value="3">VIP</option>
+                          </select>
+                        </div>
+                        <div class="mb-3">
+                          <label for="urlVideo" class="form-label">URL Video</label>
+                          <input type="text" class="form-control" id="urlVideo" name="urlVideo">
+                        </div>
+                        <div class="mb-3">
+                          <label for="urlImagen" class="form-label">URL Imagen</label>
+                          <input type="text" class="form-control" id="urlImagen" name="urlImagen">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                          <input type="hidden" name="idAutor" value="6">
+                          <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
               </div>
+
 
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-    crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const agregarIngredienteBtn = document.getElementById('agregar-ingrediente');
+      const ingredientesContainer = document.getElementById('ingredientes-container');
+
+      agregarIngredienteBtn.addEventListener('click', function() {
+        const ingredienteDiv = document.createElement('div');
+        ingredienteDiv.classList.add('ingrediente', 'input-group', 'mb-3');
+
+        const nombreInput = document.createElement('input');
+        nombreInput.type = 'text';
+        nombreInput.classList.add('form-control', 'm-input');
+        nombreInput.name = 'nombreIngrediente[]';
+        nombreInput.placeholder = 'Nombre del ingrediente';
+
+        const cantidadInput = document.createElement('input');
+        cantidadInput.type = 'text';
+        cantidadInput.classList.add('form-control', 'm-input');
+        cantidadInput.name = 'cantidad[]';
+        cantidadInput.placeholder = 'Cantidad';
+
+        const quitarBtn = document.createElement('button');
+        quitarBtn.type = 'button';
+        quitarBtn.classList.add('btn', 'btn-danger');
+        quitarBtn.textContent = 'Quitar';
+
+        quitarBtn.addEventListener('click', function() {
+          ingredienteDiv.remove();
+        });
+
+        ingredienteDiv.appendChild(nombreInput);
+        ingredienteDiv.appendChild(cantidadInput);
+        ingredienteDiv.appendChild(quitarBtn);
+
+        ingredientesContainer.appendChild(ingredienteDiv);
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 
 </html>

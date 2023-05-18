@@ -4,15 +4,13 @@ class Ingrediente
 {
     private int $idIngrediente;
     private string $nombre;
-    private string $descripcion;
+    private string $cantidad;
 
-
-
-    public function __construct(int $idIngrediente, string $nombre, string $descripcion)
+    public function __construct(int $idIngrediente, string $nombre, string $cantidad)
     {
         $this->idIngrediente = $idIngrediente;
         $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
+        $this->cantidad = $cantidad;
     }
 
     public function getIdIngrediente(): int
@@ -23,8 +21,8 @@ class Ingrediente
     {
         return $this->nombre;
     }
-    public function getDescripcion(): string
+    public function getCantidad(): string
     {
-        return $this->descripcion;
+        return $this->cantidad;
     }
 }
