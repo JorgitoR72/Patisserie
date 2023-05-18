@@ -4,6 +4,7 @@ class Security extends Connection
     private $loginPage = "login.php";
     private $homePage = "index.php";
     private $registerPage = "register.php";
+    private $exitPage = "exit.php";
 
     public function __construct()
     {
@@ -130,7 +131,7 @@ class Security extends Connection
             $data["tipoUsuario"] = "Cliente";
 
             //idPlan (default=0)
-            $data["idPlan"] = 2;
+            $data["idPlan"] = 1;
 
             if ($this->checkPassword($_POST["contrasena"], $_POST["confirmar-contrasena"])) {
                 $consulta = $this->conn->prepare('INSERT INTO Usuario (idUsuario, email, nombre, apellido, contrasena, tipoUsuario, idPlan) VALUES (:idUsuario, :email, :nombre, :apellido, :contrasena, :tipoUsuario, :idPlan)');
@@ -163,7 +164,7 @@ class Security extends Connection
         if (!isset($_SESSION["loggedIn"]) || !$_SESSION["loggedIn"]) {
             return null;
         } else {
-            return '<li class="nav-item"><a class="nav-link" href="exit.php"><img src="img/salida2.png" alt="" style="height: 30px; width: 30px;"></a></li>';
+            return '<li class="nav-item"><a class="nav-link" href='.$this->exitPage.'><img src="img/salida2.png" alt="" style="height: 30px; width: 30px;"></a></li>';
         }
     }
 }
