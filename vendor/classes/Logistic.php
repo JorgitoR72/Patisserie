@@ -193,25 +193,48 @@ class Logistic extends Connection
         return false;
     }
 
-    public function drawR()
+    public function drawR(?int $page, int $elementsPerPage): string
     {
+        $currentPage = Misc::getPage($page);
+        $lowerLimit = ($currentPage - 1) * $elementsPerPage;
+        $upperLimit = $lowerLimit + $elementsPerPage;
+
         $output = "";
-        $sql = "SELECT r.idReceta, r.nombre, ps.nombrePlan, r.urlImagen FROM Receta AS r JOIN PlanRecetas AS pr ON r.idReceta = pr.idReceta JOIN PlanSuscripcion AS ps ON pr.idPlan = ps.idPlan ORDER BY ps.nombrePlan ASC";
-        $result = $this->conn->query($sql);
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+
+        // Contar el número total de filas
+        $totalCountSql = "SELECT COUNT(*) AS total FROM Receta AS r JOIN PlanRecetas AS pr ON r.idReceta = pr.idReceta JOIN PlanSuscripcion AS ps ON pr.idPlan = ps.idPlan";
+        $totalCountResult = $this->conn->query($totalCountSql);
+        $totalCountRow = $totalCountResult->fetch(PDO::FETCH_ASSOC);
+        $totalRows = $totalCountRow['total'];
+
+        // Obtener los datos con paginación
+        $sql = "SELECT r.idReceta, r.nombre, ps.nombrePlan, r.urlImagen FROM Receta AS r JOIN PlanRecetas AS pr ON r.idReceta = pr.idReceta JOIN PlanSuscripcion AS ps ON pr.idPlan = ps.idPlan ORDER BY ps.nombrePlan ASC LIMIT :lowerLimit, :elementsPerPage";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':lowerLimit', $lowerLimit, PDO::PARAM_INT);
+        $stmt->bindValue(':elementsPerPage', $elementsPerPage, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($result as $row) {
             $output .= "<tr>";
             $output .= "<td>" . $row["idReceta"] . "</td>";
             $output .= "<td>" . $row["nombre"] . "</td>";
             $output .= "<td>" . $row["nombrePlan"] . "</td>";
-            $output .= "<td>" . $row["urlImagen"] . "</td>";
+            $output .= "<td><img src='" . $row["urlImagen"] . "' width='60' height='50' alt='Imagen de la receta' style='border-radius: 10px;'></td>";
             $output .= "<td>";
             $output .= "<a class='btn btn-primary' href='ActualizarRecetas.php?id=" . $row["idReceta"] . "' role='submit'>Editar</a>";
             $output .= "<a class='btn btn-danger' href='EliminarRecetas.php?id=" . $row["idReceta"] . "' role='submit'>Eliminar</a>";
             $output .= "</td>";
             $output .= "</tr>";
         }
+
+        // Generar los enlaces de paginación
+        $totalPages = ceil($totalRows / $elementsPerPage);
+        $output .= "<tr style='background-color: #8d4925;'><td colspan='5'>" . Misc::getNavigator($currentPage, $totalPages) . "</td></tr>";
+
         return $output;
     }
+
     public function findIngredient(int $recetaId): array
     {
         $ingredientes = [];

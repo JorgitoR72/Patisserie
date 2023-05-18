@@ -5,6 +5,7 @@ require_once __DIR__ . "/vendor/autoloader.php";
 $repository = new Logistic;
 $seguridad = new Security;
 $seguridad->checkLoggedIn();
+$page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
 if (count($_POST) > 0) {
   try {
     $repository->beginTransaction();
@@ -198,9 +199,9 @@ if (count($_POST) > 0) {
                       </tr>
                     </thead>
                     <tbody>
-                      
-                      <?php echo $repository->drawR() ?>
-                      
+
+                      <?php echo $repository->drawR($page, 6) ?>
+
                     </tbody>
                   </table>
                 </div>
@@ -265,12 +266,9 @@ if (count($_POST) > 0) {
                   </div>
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
