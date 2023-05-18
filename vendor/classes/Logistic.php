@@ -13,7 +13,7 @@ class Logistic extends Connection
     {
         $currentOrder = Misc::getOrder($order);
         $result = [];
-        $stmt = $this->conn->query("SELECT * FROM receta ORDER BY nombre $currentOrder  ");
+        $stmt = $this->conn->query("SELECT * FROM Receta ORDER BY nombre $currentOrder  ");
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $result[] = new Receta(...$row);
