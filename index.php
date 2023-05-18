@@ -97,13 +97,13 @@
                   <tr>
                     <td>
                       <p>&#9733; Acceso a 10 recetas de pasteles variados y originales.</p>
-                      <p>&#9733; Este plan es la opción más económica, lo que lo hace accesible para aquellos que buscan ahorrar dinero mientras disfrutan de nuevas recetas.</p>
+                      <p>&#9733; Este plan es total mente gratuito, lo que lo hace accesible para aquellos que buscan ahorrar dinero mientras disfrutan de nuevas recetas.</p>
                       <p>&#9733; El plan básico se enfoca en recetas fáciles de preparar, ideales para principiantes en la cocina o personas con poco tiempo disponible.
                       </p>
                     </td>
                   </tr>
                   <tr>
-                    <td>AÑO 5 €</td>
+                    <td>GRATIS</td>
                   </tr>
                 </tbody>
               </table>
@@ -119,7 +119,7 @@
               <table>
                 <thead>
                   <tr>
-                    <th>PLAN PREMIUM</th>
+                    <th>PLAN BASICO</th>
                   </tr>
                 </thead>
                 <tbody>
