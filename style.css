@@ -67,8 +67,8 @@ body {
   margin-right: 10px;
 }
 
-.sobre-nosotros h1,
-.sobre-nosotros p {
+#sobre-nosotros h1,
+#sobre-nosotros p {
   text-align: center;
   color: white;
 }
