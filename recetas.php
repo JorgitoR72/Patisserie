@@ -71,7 +71,6 @@ $receta = $repository->findAll($order);
 
 
   <!-- banner -->
-<<<<<<< HEAD
   <div class="container d-flex flex-column align-items-center" style="position: absolute; top: 10px; left: 0; right: 0; bottom: 0;">
   <div class="banner"></div>
   <img src="img/Logotipo Restaurante.png" alt="" class="img-fluid img-responsive">
@@ -110,76 +109,6 @@ $receta = $repository->findAll($order);
   <?= $repository->drawReceta($receta, $page, 5) ?>
 
  
-=======
-  <div class="container d-flex flex-column align-items-center"
-    style="position: absolute; top: 10px; left: 0; right: 0; bottom: 0;">
-    <div class="banner"></div>
-    <img src="img/Logotipo Restaurante.png" alt="" class="img-fluid img-responsive">
-    <nav class="navbar">
-      <form class="search-form">
-        <div class="input-group">
-          <input class="form-control form-control-lg search-input" type="text" placeholder="Busca tu receta..."
-            aria-label="Search" style="color: #8d4925;">
-          <button class="btn btn-warning text-white" style="background-color:#8d4925;"
-            type="submit"><img src="img/lupa.png" alt=""></button>
-        </div>
-      </form>
-    </nav>
-  </div>
-  <br><br>
-
-  <div class="recetas">
-    <div class="container" style="margin-top: 250px;">
-      <div class="row">
-        <div class="col-xl-3 col-md-3 col-sm-12">
-            <img src="img/bizcocho.jpg" alt="Bizcocho de chocolate" class="img-fluid" style="height: 200px; width: 500px;">
-        </div>
-  
-        <div class="col-xl-9 col-md-9 col-sm-12" style="background-color: white; text-align: justify; color: #8d4925;">
-            <h1>Bizcocho de chocolate</h1>
-            <p>El bizcocho de Chocolate es un plato de cuchara buenísimo que no puede faltar en ningún recetario de pastelería caseras. Puedes prepararlo con el chocolate que gustes y además puedes añadirle diferentes tipos de chocolates, ¡es muy versátil y lo puedes personalizar como más te guste!</p>
-            <div style="text-align: right;">
-                <a href="ingredientes.html">
-                    <button type="button" class="btn btn-lg" style="background-color: #c57d56; color: white;">Cocinar</button>
-                </a>
-            </div>
-        </div>
-      </div><br>
-
-      <div class="row">
-        <div class="col-xl-3 col-md-3 col-sm-12">
-            <img src="img/bizcocho.jpg" alt="Bizcocho de chocolate" class="img-fluid" style="height: 200px; width: 500px;">
-        </div>
-  
-        <div class="col-xl-9 col-md-9 col-sm-12" style="background-color: white; text-align: justify; color: #8d4925;">
-            <h1>Bizcocho de chocolate</h1>
-            <p>El bizcocho de Chocolate es un plato de cuchara buenísimo que no puede faltar en ningún recetario de pastelería caseras. Puedes prepararlo con el chocolate que gustes y además puedes añadirle diferentes tipos de chocolates, ¡es muy versátil y lo puedes personalizar como más te guste!</p>
-            <div style="text-align: right;">
-                <a href="ingredientes.html">
-                    <button type="button" class="btn btn-lg" style="background-color: #c57d56; color: white;">Cocinar</button>
-                </a>
-            </div>
-        </div>
-      </div><br>
-      <div class="row">
-        <div class="col-xl-3 col-md-3 col-sm-12">
-            <img src="img/bizcocho.jpg" alt="Bizcocho de chocolate" class="img-fluid" style="height: 200px; width: 500px;">
-        </div>
-  
-        <div class="col-xl-9 col-md-9 col-sm-12" style="background-color: white; text-align: justify; color: #8d4925;">
-            <h1>Bizcocho de chocolate</h1>
-            <p>El bizcocho de Chocolate es un plato de cuchara buenísimo que no puede faltar en ningún recetario de pastelería caseras. Puedes prepararlo con el chocolate que gustes y además puedes añadirle diferentes tipos de chocolates, ¡es muy versátil y lo puedes personalizar como más te guste!</p>
-            <div style="text-align: right;">
-                <a href="ingredientes.html">
-                    <button type="button" class="btn btn-lg" style="background-color: #c57d56; color: white;">Cocinar</button>
-                </a>
-            </div>
-        </div>
-      </div>
-    </div>
-    </div>
-
->>>>>>> php
   <!-- Footer Start -->
   <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
     <div class="row pt-5">
@@ -207,19 +136,11 @@ $receta = $repository->findAll($order);
       </div>
       <!-- Redes Sociales -->
       <div id="redes-sociales">
-<<<<<<< HEAD
       <ul>
           <li><a href="https://twitter.com" target="_blank"><img src="img/twitter.png" alt="logo twitter"></a></li>
           <li><a href="https://www.facebook.com" target="_blank"><img src="img/facebook.png" alt="logo facebook"></a></li>
           <li><a href="https://www.instagram.com" target="_blank"><img src="img/instagram.png" alt="logo instagram"></a></li>
           <li><a href="https://www.youtube.com" target="_blank"><img src="img/youtube.png" alt="logo youtube"></a></li>
-=======
-        <ul>
-          <li><img src="img/twitter.png"  alt="logo twitter"></li>
-          <li><img src="img/facebook.png" alt="logo facebook"></li>
-          <li><img src="img/instagram.png" alt="logo instagram"></li>
-          <li><img src="img/youtube.png" alt="logo youtube"></li>
->>>>>>> php
         </ul>
         
       </div>
