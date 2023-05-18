@@ -2,6 +2,7 @@
 require_once __DIR__ . "/vendor/autoloader.php";
 $seguridad = new Security;
 $seguridad->checkLoggedIn();
+$acceso = $seguridad->getUserData();
 //Paginación
 $order = isset($_GET["order"]) ? $_GET["order"] : null;
 $page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
@@ -64,7 +65,7 @@ $receta = $repository->findAll($order);
       </div>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="registro.php"><strong> ACCEDER </strong><img src="img/icono_chef.png" alt=""
+          <a class="nav-link" href="registro.php"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt=""
               style="height: 30px; width: 30px;"></a>
         </li>
       </ul>
