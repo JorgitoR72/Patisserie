@@ -52,7 +52,7 @@ class Security extends Connection
                 $_SESSION["loggedIn"] = $user;
                 /* $_SESSION["loggedIn"]["message"] = 1; */
             } else {
-                return "Incorrect Credentials" . '<br><a href="register.php" style="color: #f1dcc2; font-style: italic;">CREATE ACCOUNT HERE</a>';
+                return "Incorrect Credentials" . '<br><a href='.$this->registerPage.' style="color: #f1dcc2; font-style: italic;">CREATE ACCOUNT HERE</a>';
             }
         } else {
             return null;
