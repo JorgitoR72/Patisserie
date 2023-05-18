@@ -59,9 +59,11 @@ $loginMessage = $seguridad->doLogin();
       <div class="col-lg-4 col-sm-12 form text-center">
         <h2 style="color: #8d4925; font-weight: bold;">INICIAR SESIÓN</h2>
         <form class="" method="post" action="">
-          <h4>
-            <?= $loginMessage ?>
-          </h4>
+          <div style="color: #f1dcc2; font-style: italic;">
+            <h4>
+              <?= $loginMessage ?>
+            </h4>
+          </div>
           <div class="mb-3">
             <label class="form-label" for="email-login"></label>
             <input name="email-login" type="email" class="form-control" placeholder="Email">
