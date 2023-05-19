@@ -160,3 +160,7 @@ td {
   padding: 5px; /* Agrega un espacio alrededor del número para mejor legibilidad */
   border-radius: 3px; /* Agrega bordes redondeados para resaltar el número */
 }
+
+.sobre-nosotros{
+  color: white;
+}

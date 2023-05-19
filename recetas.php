@@ -7,12 +7,6 @@ $acceso = $seguridad->getUserData();
 $order = isset($_GET["order"]) ? $_GET["order"] : null;
 $page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
 
-
-
-$order = isset($_GET['order']) ? $_GET['order'] : null;
-
-$page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
-
 $repository = new Logistic;
 $receta = $repository->findAll($order);
 
