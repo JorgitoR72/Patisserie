@@ -59,9 +59,9 @@ if ($tipoUsuario) {
       </div>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="registro.php"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt=""
-              style="height: 30px; width: 30px;"></a>
+          <a class="nav-link" href="<?=$pagina?>"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt="" style="height: 30px; width: 30px;"></a>
         </li>
+        <?= $seguridad->createExit() ?>
       </ul>
     </div>
   </nav>
