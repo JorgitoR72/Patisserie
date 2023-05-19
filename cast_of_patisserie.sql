@@ -26,7 +26,7 @@ CREATE TABLE Receta (
   urlImagen VARCHAR(255),
   urlVideo VARCHAR(255),
   descripcion VARCHAR(255),
-  preparacion VARCHAR(255),
+  preparacion TEXT,
   FOREIGN KEY (idAutor) REFERENCES Usuario(idUsuario)
 );
 
@@ -38,7 +38,7 @@ CREATE TABLE Ingrediente (
 CREATE TABLE RecetaIngrediente (
   idReceta INT,
   idIngrediente INT,
-  cantidad INT,
+  cantidad VARCHAR(50),
   PRIMARY KEY (idReceta, idIngrediente),
   FOREIGN KEY (idReceta) REFERENCES Receta(idReceta),
   FOREIGN KEY (idIngrediente) REFERENCES Ingrediente(idIngrediente)
