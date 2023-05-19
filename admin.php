@@ -198,9 +198,9 @@ if (count($_POST) > 0) {
                       </tr>
                     </thead>
                     <tbody>
-                      
+
                       <?php echo $repository->drawR() ?>
-                      
+
                     </tbody>
                   </table>
                 </div>
