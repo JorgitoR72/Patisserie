@@ -53,25 +53,27 @@ if ($tipoUsuario == true) {
             <a class="text-uppercase nav-link" href="sobreNosotros.php"><strong> Sobre nosotros</strong></a>
           </li>
         </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="<?=$pagina?>"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt="" style="height: 30px; width: 30px;"></a>
+          </li>
+        </ul>
       </div>
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="<?=$pagina?>"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt="" style="height: 30px; width: 30px;"></a>
-        </li>
         <?= $seguridad->createExit() ?>
       </ul>
     </div>
   </nav>
 
   <!-- banner -->
-  <div class="container d-flex flex-column align-items-center" style="position: absolute; top: 10px; left: 0; right: 0; bottom: 0;">
+  <div class="container d-flex flex-column align-items-center" id="logoR">
     <div class="banner"></div>
     <img src="img/Logotipo Restaurante.png" alt="" class="img-fluid img-responsive">
     <nav class="navbar">
-      <form class="search-form">
+      <form class="search-form" action="recetas.php" method="GET">
         <div class="input-group">
-          <input class="form-control form-control-lg search-input" type="text" id="searchInput" placeholder="Busca tu receta..." aria-label="Search" style="color: #8d4925;">
-          <button class="btn btn-warning text-white" style="background-color:#8d4925;" type="button" onclick="searchInPage()"><img src="img/lupa.png" alt=""></button>
+          <input class="form-control form-control-lg search-input" type="text" name="searchInput" placeholder="Busca tu receta..." aria-label="Search" style="color: #8d4925;">
+          <button class="btn btn-warning text-white" style="background-color:#8d4925;" type="submit"><img src="img/lupa.png" alt=""></button>
         </div>
       </form>
     </nav>
@@ -94,15 +96,15 @@ if ($tipoUsuario == true) {
 
 
   <!-- Carousel -->
-  <div class="container px-5" style="margin-top: 250px;">
+  <div class="container px-5" id="crl">
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="row">
-            <div class="col-md-6">
-              <img class="img-fluid" src="img/carrusel_1.jpg" class="d-block w-100" alt="Imagen 1">
+            <div class="col-lg-6 col-md-12">
+              <img class="img-fluid" src="img/carrusel_1.jpg" class="d-block w-100" alt="Imagen 1" style="height: 382px; width:100%;">
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-12">
               <table>
                 <thead>
                   <tr>
@@ -128,10 +130,10 @@ if ($tipoUsuario == true) {
         </div>
         <div class="carousel-item">
           <div class="row">
-            <div class="col-md-6">
-              <img class="img-fluid" src="img/carrusel_2.jpg" class="d-block w-100" alt="Imagen 2">
+            <div class="col-lg-6 col-md-12">
+              <img class="img-fluid" src="img/carrusel_2.jpg" class="d-block w-100" alt="Imagen 2" style="height: 382px; width:100%;">
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-12">
               <table>
                 <thead>
                   <tr>
@@ -157,10 +159,10 @@ if ($tipoUsuario == true) {
         </div>
         <div class="carousel-item">
           <div class="row">
-            <div class="col-md-6">
-              <img src="img/carrusel_3.jpg" class="d-block w-100" alt="Imagen 3" style="height: auto; width: 300px;">
+            <div class="col-lg-6 col-md-12">
+              <img src="img/carrusel_3.jpg" class="d-block w-100" alt="Imagen 3" style="height: 382px; width:100%;">
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-12">
               <table>
                 <thead>
                   <tr>

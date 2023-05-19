@@ -5,11 +5,12 @@ require_once __DIR__ . "/vendor/autoloader.php";
 $repository = new Logistic;
 $seguridad = new Security;
 $seguridad->checkLoggedIn();
-/* if ($tipoUsuario == true) {
+$page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
+if ($tipoUsuario) {
   header("Location: " . "admin.php");
 } else {
   header("Location: " . "user.php");
-} */
+} 
 if (count($_POST) > 0) {
   try {
     $repository->beginTransaction();
@@ -31,7 +32,7 @@ if (count($_POST) > 0) {
     for ($i = 0; $i < count($nombreIngredientes); $i++) {
       $ingrediente = [
         'nombre' => $nombreIngredientes[$i],
-        'cantidad' => (int) $cantidades[$i]
+        'cantidad' => $cantidades[$i]
       ];
       $data['ingredientes'][] = $ingrediente;
     }
@@ -203,9 +204,9 @@ if (count($_POST) > 0) {
                       </tr>
                     </thead>
                     <tbody>
-                      
-                      <?php echo $repository->drawR() ?>
-                      
+
+                      <?php echo $repository->drawR($page, 5) ?>
+
                     </tbody>
                   </table>
                 </div>
@@ -270,12 +271,9 @@ if (count($_POST) > 0) {
                   </div>
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
