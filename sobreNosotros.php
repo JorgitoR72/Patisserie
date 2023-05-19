@@ -36,15 +36,10 @@ if ($tipoUsuario) {
 
 <body>
   
-  <!-- Barra de navegación -->
-  <div class="container d-flex flex-column align-items-center"
-    style="position: float;">
-    <img src="img/Logotipo Restaurante.png" alt="" class="img-fluid img-responsive" style="width: 200px;"></div>
-
-  <!-- Barra de navegación -->
-  <nav class="navbar navbar-expand-lg" style="background-color: #8d4925;">
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-white">
     <div class="container-fluid">
-      <button class="navbar-toggler" style="color: #f1dcc2; border-color: #f1dcc2; background-color: #f1dcc2;" type="button"
+      <button class="navbar-toggler" type="button"
         data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
         aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -52,25 +47,38 @@ if ($tipoUsuario) {
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="text-uppercase nav-link" aria-current="page" href="index.php" style="color: #f1dcc2;"><strong>Inicio</strong></a>
+            <a class="text-uppercase nav-link" aria-current="page" href="index.php"><strong>Inicio</strong></a>
           </li>
           <li class="nav-item">
-            <a class="text-uppercase nav-link" href="recetas.php" style="color: #f1dcc2;"><strong>Recetas</strong></a>
+            <a class="text-uppercase nav-link" href="recetas.php"><strong>Recetas</strong></a>
           </li>
           <li class="nav-item">
-            <a class="text-uppercase nav-link" href="sobreNosotros.php" style="color: #f1dcc2;"><strong> Sobre nosotros</strong></a>
+            <a class="text-uppercase nav-link" href="sobreNosotros.php"><strong> Sobre nosotros</strong></a>
           </li>
         </ul>
       </div>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="<?=$pagina?>" style="color: #f1dcc2;"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt=""
-              style="height: 30px; width: 30px; "></a>
+          <a class="nav-link" href="registro.php"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt=""
+              style="height: 30px; width: 30px;"></a>
         </li>
-        <?= $seguridad->createExit() ?>
       </ul>
     </div>
-  </nav><br>
+  </nav>
+ <!-- banner -->
+ <div class="container d-flex flex-column align-items-center" style="position: absolute; top: 10px; left: 0; right: 0; bottom: 0;">
+  <div class="banner"></div>
+  <img src="img/Logotipo Restaurante.png" alt="" class="img-fluid img-responsive">
+  <nav class="navbar">
+    <form class="search-form">
+      <div class="input-group">
+        <input class="form-control form-control-lg search-input" type="text" id="searchInput" placeholder="Busca tu receta..." aria-label="Search" style="color: #8d4925;">
+        <button class="btn btn-warning text-white" style="background-color:#8d4925;" type="button" onclick="searchInPage()"><img src="img/lupa.png" alt=""></button>
+      </div>
+    </form>
+  </nav>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
 
 
   <div class="sobre-nosotros">
