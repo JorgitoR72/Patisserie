@@ -3,5 +3,5 @@
     "port" : "3306",
     "dbname" : "patisserie",
     "user" : "root",
-    "password" : ""
+    "password" : "root"
 }
