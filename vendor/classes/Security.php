@@ -4,13 +4,15 @@ class Security extends Connection
     private $loginPage = "login.php";
     private $homePage = "index.php";
     private $registerPage = "register.php";
+    private $exitPage = "exit.php";
+
     public function __construct()
     {
         parent::connect();
         if (session_status() !== PHP_SESSION_ACTIVE) session_start();
     }
 
-    public function close_session()
+    public function closeSession()
     {
         if (isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"]) {
             header("Location: " . $this->loginPage);
@@ -26,17 +28,31 @@ class Security extends Connection
         }
     }
 
+    public function checkAdmin()
+    {
+        if ($_SESSION["loggedIn"]["tipoUsuario"] == "Autor") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
+
+
     public function doLogin()
     {
         if (count($_POST) > 0) {
             $user = $this->getUser($_POST["email-login"]);
             $_SESSION["loggedIn"] = $this->checkUser($user, $_POST["contrasena-login"]) ? $user["email"] : false;
-            var_dump($_SESSION["loggedIn"]);
+            /* var_dump($_SESSION["loggedIn"]); */
             if ($_SESSION["loggedIn"]) {
                 header("Location: " . $this->homePage);
                 $_SESSION["loggedIn"] = $user;
+                /* $_SESSION["loggedIn"]["message"] = 1; */
             } else {
-                return "Incorrect Credentials".'<br><a href="register.php" style="color: #f1dcc2; font-style: italic;">CREATE ACCOUNT HERE</a>';
+                return "Incorrect Credentials" . '<br><a href='.$this->registerPage.' style="color: #f1dcc2; font-style: italic;">CREATE ACCOUNT HERE</a>';
             }
         } else {
             return null;
@@ -46,7 +62,12 @@ class Security extends Connection
     public function getUserData()
     {
         if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
-            return "Buenas, " . $_SESSION["loggedIn"]["nombre"] . "!";
+            if ($_SESSION["loggedIn"] && !$_SESSION["loggedIn"]["message"]) {
+                $_SESSION["loggedIn"]["message"] = 1;
+                return "Buenas, ".$_SESSION["loggedIn"]["nombre"]."!";
+            } else {
+                return $_SESSION["loggedIn"]["nombre"];
+            }
         } else {
             return "ACCESO";
         }
@@ -110,7 +131,7 @@ class Security extends Connection
             $data["tipoUsuario"] = "Cliente";
 
             //idPlan (default=0)
-            $data["idPlan"] = 2;
+            $data["idPlan"] = 1;
 
             if ($this->checkPassword($_POST["contrasena"], $_POST["confirmar-contrasena"])) {
                 $consulta = $this->conn->prepare('INSERT INTO Usuario (idUsuario, email, nombre, apellido, contrasena, tipoUsuario, idPlan) VALUES (:idUsuario, :email, :nombre, :apellido, :contrasena, :tipoUsuario, :idPlan)');
@@ -138,38 +159,12 @@ class Security extends Connection
         }
     }
 
-    /* public function prepareRegister()
+    public function createExit()
     {
-        if (count($_POST) > 0) {
-            //creo array $data
-            $data = [];
-
-            //conseguir idUsuario
-            $stmt1 = $this->conn->query("SELECT MAX(idUsuario) AS max_id FROM Usuario");
-            $id = $stmt1->fetch(PDO::FETCH_ASSOC);
-            $data["idUsuario"] = $id["max_id"] + 1;
-
-            //email
-            $data["email"] = $_POST["email"];
-
-            //nombre
-            $data["nombre"] = $_POST["nombre-registro"];
-
-            //apellido
-            $data["apellido"] = $_POST["apellido"];
-
-            //contraseña
-            $data["contrasena"] = $_POST["contrasena"];
-
-            //tipoUsuario (default="Cliente")
-            $data["tipoUsuario"] = "Cliente";
-
-            //idPlan (default=0)
-            $data["idPlan"] = 2;
-
-            return $data;
-        } else {
+        if (!isset($_SESSION["loggedIn"]) || !$_SESSION["loggedIn"]) {
             return null;
+        } else {
+            return '<li class="nav-item"><a class="nav-link" href='.$this->exitPage.'><img src="img/salida2.png" alt="" style="height: 30px; width: 30px;"></a></li>';
         }
-    } */
+    }
 }
