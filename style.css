@@ -4,32 +4,11 @@ body {
 }
 
 .navbar {
-  z-index: 1;
+  z-index: 2;
 }
 
 .nav-link {
   color: #8d4925;
-}
-
-#logoR {
-  position: absolute; top: 10px; left: 0; right: 0; bottom: 0;
-}
-
-#crl{
-  margin-top: 240px;
-}
-
-@media (max-width: 995px) {
-  #logoR {
-    position: absolute; top: 50px; left: 0; right: 0; bottom: 0;
-  }
-  .navbar-white {
-    background-color: #f1dcc2;
-    width: 300px;
-  }
-  #crl{
-    margin-top: 260px;
-  }
 }
 
 /* Borde del buscador  */
@@ -88,19 +67,15 @@ body {
   margin-right: 10px;
 }
 
-#sobre-nosotros h1 {
-  font-weight: 800;
+#sobre-nosotros h1,
+#sobre-nosotros p {
   text-align: center;
   color: white;
-}
-#sobre-nosotros p, li{
-  font-size: 20px;
 }
 
 /* Estilo para la tabla */
 table {
   border-collapse: collapse;
-  /* height: 382px; */
   height: 100%;
 }
 
@@ -129,8 +104,8 @@ tbody tr:nth-child(2) {
 /* Estilo para todas las celdas de la tabla */
 td {
   padding: 10px;
-  padding-left: 80px;
-  padding-right: 80px;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 .form {
   background-color: #c57d56;
