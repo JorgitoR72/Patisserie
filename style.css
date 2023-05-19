@@ -15,12 +15,20 @@ body {
   position: absolute; top: 10px; left: 0; right: 0; bottom: 0;
 }
 
+#crl{
+  margin-top: 240px;
+}
+
 @media (max-width: 995px) {
   #logoR {
     position: absolute; top: 50px; left: 0; right: 0; bottom: 0;
   }
   .navbar-white {
     background-color: #f1dcc2;
+    width: 300px;
+  }
+  #crl{
+    margin-top: 260px;
   }
 }
 

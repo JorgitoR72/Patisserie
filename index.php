@@ -71,7 +71,7 @@ $acceso = $seguridad->getUserData();
   <br><br>
 
   <!-- Carousel -->
-  <div class="container px-5" style="margin-top: 240px;">
+  <div class="container px-5" id="crl">
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">

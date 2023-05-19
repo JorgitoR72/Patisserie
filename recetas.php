@@ -53,18 +53,18 @@ $receta = $repository->findAll($order, $search);
             <a class="text-uppercase nav-link" href="sobreNosotros.php"><strong> Sobre nosotros</strong></a>
           </li>
         </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="registro.php"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt="" style="height: 30px; width: 30px;"></a>
+          </li>
+        </ul>
       </div>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="registro.php"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt="" style="height: 30px; width: 30px;"></a>
-        </li>
-      </ul>
     </div>
   </nav>
 
 
   <!-- banner -->
-  <div class="container d-flex flex-column align-items-center" style="position: absolute; top: 10px; left: 0; right: 0; bottom: 0;">
+  <div class="container d-flex flex-column align-items-center" id="logoR">
     <div class="banner"></div>
     <img src="img/Logotipo Restaurante.png" alt="" class="img-fluid img-responsive">
     <nav class="navbar">
@@ -81,7 +81,7 @@ $receta = $repository->findAll($order, $search);
   <!-- Mostrar las recetas con ordenación y paginación -->
 
   <div class="recetas">
-    <div class="container" style="margin-top: 230px;">
+    <div class="container" id="crl">
       <button class="btn btn-light " style="margin-bottom: 20px; background-color: #c57d56;"><?= Misc::orderButton($order) ?></button>
       <?= $repository->drawReceta($receta, $page, 5) ?>
     </div>
