@@ -200,7 +200,7 @@ if (count($_POST) > 0) {
                     </thead>
                     <tbody>
 
-                      <?php echo $repository->drawR($page, 6) ?>
+                      <?php echo $repository->drawR($page, 5) ?>
 
                     </tbody>
                   </table>

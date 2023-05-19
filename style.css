@@ -4,11 +4,24 @@ body {
 }
 
 .navbar {
-  z-index: 2;
+  z-index: 1;
 }
 
 .nav-link {
   color: #8d4925;
+}
+
+#logoR {
+  position: absolute; top: 10px; left: 0; right: 0; bottom: 0;
+}
+
+@media (max-width: 995px) {
+  #logoR {
+    position: absolute; top: 50px; left: 0; right: 0; bottom: 0;
+  }
+  .navbar-white {
+    background-color: #f1dcc2;
+  }
 }
 
 /* Borde del buscador  */
@@ -79,6 +92,7 @@ body {
 /* Estilo para la tabla */
 table {
   border-collapse: collapse;
+  /* height: 382px; */
   height: 100%;
 }
 
@@ -107,8 +121,8 @@ tbody tr:nth-child(2) {
 /* Estilo para todas las celdas de la tabla */
 td {
   padding: 10px;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 80px;
+  padding-right: 80px;
 }
 .form {
   background-color: #c57d56;
