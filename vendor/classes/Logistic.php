@@ -99,7 +99,7 @@ class Logistic extends Connection
                 $stmt4 = $this->conn->prepare("INSERT INTO `recetaingrediente`(`idReceta`, `idIngrediente`, `cantidad`) VALUES (:idReceta, :idIngrediente, :cantidad)");
                 $stmt4->bindParam(':idReceta', $maxid, PDO::PARAM_INT);
                 $stmt4->bindParam(':idIngrediente', $maxidIngrediente, PDO::PARAM_INT);
-                $stmt4->bindParam(':cantidad', $ingrediente["cantidad"], PDO::PARAM_INT);
+                $stmt4->bindParam(':cantidad', $ingrediente["cantidad"], PDO::PARAM_STR);
                 $stmt4->execute();
             }
 
@@ -145,7 +145,7 @@ class Logistic extends Connection
             // Actualizar los ingredientes y cantidades
             foreach ($data['ingredientes'] as $ingrediente) {
                 $stmtIngredient = $this->conn->prepare("UPDATE recetaingrediente SET cantidad = :cantidad WHERE idReceta = :idReceta AND idIngrediente = :idIngrediente");
-                $stmtIngredient->bindParam(":cantidad", $ingrediente['cantidad'], PDO::PARAM_INT);
+                $stmtIngredient->bindParam(":cantidad", $ingrediente['cantidad'], PDO::PARAM_STR);
                 $stmtIngredient->bindParam(":idReceta", $data['idReceta'], PDO::PARAM_INT);
                 $stmtIngredient->bindParam(":idIngrediente", $ingrediente['idIngrediente'], PDO::PARAM_INT);
                 $stmtIngredient->execute();
