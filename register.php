@@ -84,6 +84,12 @@ $registerMessage = $seguridad->doRegister();
             <input type="password" class="form-control" name="confirmar-contrasena" placeholder="Confirmar contraseña" required>
           </div>
           <button type="submit" class="btn btn-primary btn-lg" style="background-color: #8d4925; border-color: #f1dcc2; color: #f1dcc2;">CONFIRMAR</button>
+          <br>
+          <br>
+          <br>
+          <div class="text-end">
+            <a href="login.php" style="color: #f1dcc2; font-style: italic;">RETURN LOGIN</a>
+          </div>
         </form>
       </div>
     </div>

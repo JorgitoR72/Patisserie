@@ -5,9 +5,6 @@ require_once __DIR__ . "/vendor/autoloader.php";
 $repository = new Logistic;
 $seguridad = new Security;
 $seguridad->checkLoggedIn();
-if ($_SESSION["loggedIn"]["tipoUsuario"] == "Cliente") {
-  header("Location: " . "user.php");
-}
 if (count($_POST) > 0) {
   try {
     $repository->beginTransaction();
@@ -138,10 +135,6 @@ if (count($_POST) > 0) {
                 <img src="img/chef.png" alt="" style="padding-right: 25px; width: 75px;">PERFIL
               </button>
               <br>
-              <button class="nav-link active" id="v-pills-exit-tab" data-bs-toggle="pill" data-bs-target="#v-pills-exit" type="button" role="tab" aria-controls="v-pills-exit" aria-selected="false" style="text-align: left;">
-                <img src="img/recetas.png" alt="" style="padding-right: 25px; width: 75px;">RECETAS
-              </button>
-              <br>
               <a class="nav-link text-start" id="v-pills-exit-tab" href="exit.php" role="tab" aria-selected="false"><img src="img/salida.png" alt="" style="padding-right: 25px;">SALIR</a>
             </div>
           </div>
@@ -185,91 +178,6 @@ if (count($_POST) > 0) {
                   <button class="btn btn-success mt-3">Guardar</button>
                 </div>
               </div>
-            </div>
-            <div class="tab-pane fade show active" id="v-pills-exit" role="tabpanel" aria-labelledby="v-pills-exit-tab">
-              <div class="container" style="padding: 0;">
-                <h1>RECETAS</h1>
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>IdReceta</th>
-                        <th>Nombre</th>
-                        <th>Plan</th>
-                        <th>Imagen</th>
-                        <th>Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      
-                      <?php echo $repository->drawR() ?>
-                      
-                    </tbody>
-                  </table>
-                </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarReceta">Agregar</button>
-              </div>
-
-              <!-- Modal de Agregar -->
-              <div class="modal fade" id="modalAgregarReceta" tabindex="-1" aria-labelledby="modalAgregarRecetaLabel" aria-hidden="true">
-                <div class="modal-dialog modal-fullscreen-md-down">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="modalAgregarRecetaLabel">Agregar Receta</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <form method="post" action="">
-                        <div class="mb-3">
-                          <label for="nombre" class="form-label">Nombre Receta</label>
-                          <input type="text" class="form-control" id="nombre" name="nombre">
-                        </div>
-                        <div class="mb-3">
-                          <div id="ingredientes-container">
-                            <div class="ingrediente input-group mb-3">
-                              <input type="text" class="form-control m-input" name="nombreIngrediente[]" placeholder="Nombre del ingrediente">
-                              <input type="text" class="form-control m-input" name="cantidad[]" placeholder="Cantidad">
-                              <button type="button" class="btn btn-danger">Quitar</button>
-                            </div>
-                          </div>
-                          <button type="button" id="agregar-ingrediente" class="btn btn-info">Agregar ingrediente</button>
-                        </div>
-                        <div class="mb-3">
-                          <label for="preparacion" class="form-label">Preparación</label>
-                          <textarea class="form-control" id="preparacion" rows="3" name="preparacion"></textarea>
-                        </div>
-                        <div class="mb-3">
-                          <label for="descripcion" class="form-label">Descripción</label>
-                          <textarea class="form-control" id="descripcion" rows="3" name="descripcion"></textarea>
-                        </div>
-                        <div class="mb-3">
-                          <label for="idPlan" class="form-label">Plan al que pertenece</label>
-                          <select class="form-select" id="idPlan" name="idPlan">
-                            <option value="1">Básico</option>
-                            <option value="2">Premium</option>
-                            <option value="3">VIP</option>
-                          </select>
-                        </div>
-                        <div class="mb-3">
-                          <label for="urlVideo" class="form-label">URL Video</label>
-                          <input type="text" class="form-control" id="urlVideo" name="urlVideo">
-                        </div>
-                        <div class="mb-3">
-                          <label for="urlImagen" class="form-label">URL Imagen</label>
-                          <input type="text" class="form-control" id="urlImagen" name="urlImagen">
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                          <input type="hidden" name="idAutor" value="6">
-                          <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
             </div>
           </div>
         </div>

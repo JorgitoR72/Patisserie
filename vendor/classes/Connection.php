@@ -18,9 +18,9 @@ class Connection
             echo "ha fallado la conexión. Error: ". $exception->getMessage();
         }
     }
- /*    public function disconnect()
+    /* public function disconnect()
     {
-        $this->conn = false;
+        $this->conn = null;
     }
     public function __destruct()
     {
