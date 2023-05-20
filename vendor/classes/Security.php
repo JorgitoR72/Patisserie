@@ -30,7 +30,7 @@ class Security extends Connection
 
     public function checkAdmin()
     {
-        if ($_SESSION["loggedIn"]["tipoUsuario"] == "Autor") {
+        if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]["tipoUsuario"] == "Autor") {
             return true;
         } else {
             return false;
@@ -62,7 +62,7 @@ class Security extends Connection
     public function getUserData()
     {
         if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
-            if ($_SESSION["loggedIn"] && !$_SESSION["loggedIn"]["message"]) {
+            if ($_SESSION["loggedIn"] && !isset($_SESSION["loggedIn"]["message"])) {
                 $_SESSION["loggedIn"]["message"] = 1;
                 return "Buenas, ".$_SESSION["loggedIn"]["nombre"]."!";
             } else {
