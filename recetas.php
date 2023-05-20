@@ -15,7 +15,7 @@ $page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
 $search = isset($_GET["searchInput"]) ? (string) $_GET["searchInput"] : "";
 
 $repository = new Logistic;
-$receta = $repository->findAll($order, $search);;
+$receta = $repository->findAll($order, $search);
 
 ?>
 

@@ -5,42 +5,8 @@ require_once __DIR__ . "/vendor/autoloader.php";
 $repository = new Logistic;
 $seguridad = new Security;
 $seguridad->checkLoggedIn();
-if (count($_POST) > 0) {
-  try {
-    $repository->beginTransaction();
 
-    $data = [
-      'idAutor' => (int) $_POST["idAutor"],
-      'idPlan' => (int) $_POST["idPlan"],
-      'nombre' => $_POST["nombre"],
-      'urlImagen' => $_POST["urlImagen"],
-      'urlVideo' => $_POST["urlVideo"],
-      'descripcion' => $_POST["descripcion"],
-      'preparacion' => $_POST["preparacion"],
-      'ingredientes' => []
-    ];
-
-    $nombreIngredientes = $_POST['nombreIngrediente'];
-    $cantidades = $_POST['cantidad'];
-
-    for ($i = 0; $i < count($nombreIngredientes); $i++) {
-      $ingrediente = [
-        'nombre' => $nombreIngredientes[$i],
-        'cantidad' => (int) $cantidades[$i]
-      ];
-      $data['ingredientes'][] = $ingrediente;
-    }
-
-    $rowsAffectedI = $repository->insertR($data); // Llamar al método "insertR" del repositorio para agregar receta
-    header('location:admin.php');
-
-    $repository->commit();
-  } catch (PDOException $e) {
-    echo "Error de base de datos: " . $e->getMessage();
-  }
-}
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -95,20 +61,6 @@ if (count($_POST) > 0) {
       color: #c57d56;
       font-weight: bold;
     }
-
-    thead {
-      background-color: #8d4925;
-      color: #f1dcc2;
-      font-weight: bold;
-    }
-
-    tbody tr:nth-child(even) {
-      background-color: #c57d56;
-    }
-
-    tbody tr:nth-child(odd) {
-      background-color: #ffffff;
-    }
   </style>
 </head>
 
@@ -131,7 +83,7 @@ if (count($_POST) > 0) {
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
               <a class="nav-link text-star" id="v-pills-home-tab" href="index.php" role="tab" aria-selected="false"><img src="img/casa1.svg" alt="" style="padding-right: 25px;">INICIO</a>
               <br>
-              <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" style="text-align: left;">
+              <button class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" style="text-align: left;">
                 <img src="img/chef.png" alt="" style="padding-right: 25px; width: 75px;">PERFIL
               </button>
               <br>
@@ -143,7 +95,7 @@ if (count($_POST) > 0) {
       <div class="col-lg-9 col-md-12 full-height">
         <div class="container" style="padding: 45px;">
           <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
               <div class="row">
                 <div class="col-md-12" style="padding-bottom: 25px;">
                   <h1>Perfil</h1>
@@ -181,48 +133,9 @@ if (count($_POST) > 0) {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const agregarIngredienteBtn = document.getElementById('agregar-ingrediente');
-      const ingredientesContainer = document.getElementById('ingredientes-container');
-
-      agregarIngredienteBtn.addEventListener('click', function() {
-        const ingredienteDiv = document.createElement('div');
-        ingredienteDiv.classList.add('ingrediente', 'input-group', 'mb-3');
-
-        const nombreInput = document.createElement('input');
-        nombreInput.type = 'text';
-        nombreInput.classList.add('form-control', 'm-input');
-        nombreInput.name = 'nombreIngrediente[]';
-        nombreInput.placeholder = 'Nombre del ingrediente';
-
-        const cantidadInput = document.createElement('input');
-        cantidadInput.type = 'text';
-        cantidadInput.classList.add('form-control', 'm-input');
-        cantidadInput.name = 'cantidad[]';
-        cantidadInput.placeholder = 'Cantidad';
-
-        const quitarBtn = document.createElement('button');
-        quitarBtn.type = 'button';
-        quitarBtn.classList.add('btn', 'btn-danger');
-        quitarBtn.textContent = 'Quitar';
-
-        quitarBtn.addEventListener('click', function() {
-          ingredienteDiv.remove();
-        });
-
-        ingredienteDiv.appendChild(nombreInput);
-        ingredienteDiv.appendChild(cantidadInput);
-        ingredienteDiv.appendChild(quitarBtn);
-
-        ingredientesContainer.appendChild(ingredienteDiv);
-      });
-    });
-  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 

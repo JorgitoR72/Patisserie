@@ -53,13 +53,13 @@ if ($tipoUsuario) {
             <a class="text-uppercase nav-link" href="sobreNosotros.php"><strong> Sobre nosotros</strong></a>
           </li>
         </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $pagina ?>"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt="" style="height: 30px; width: 30px;"></a>
+          </li>
+          <?= $seguridad->createExit() ?>
+        </ul>
       </div>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="<?= $pagina ?>"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt="" style="height: 30px; width: 30px;"></a>
-        </li>
-        <?= $seguridad->createExit() ?>
-      </ul>
     </div>
   </nav>
 
@@ -85,7 +85,7 @@ if ($tipoUsuario) {
         <div class="carousel-item active">
           <div class="row">
             <div class="col-lg-6 col-md-12">
-              <img class="img-fluid" src="img/carrusel_1.jpg" class="d-block w-100" alt="Imagen 1" style="height: 382px; width:100%;">
+              <img class="img-fluid" src="img/carrusel_1.jpg" class="d-block w-100" alt="Imagen 1" style="height: 100%;width:100%; object-fit:cover;">
             </div>
             <div class="col-lg-6 col-md-12">
               <table>
@@ -114,7 +114,7 @@ if ($tipoUsuario) {
         <div class="carousel-item">
           <div class="row">
             <div class="col-md-6">
-              <img class="img-fluid" src="img/carrusel_2.jpg" class="d-block w-100" alt="Imagen 2" style="height: 382px; width:100%;">
+              <img class="img-fluid" src="img/carrusel_2.jpg" class="d-block w-100" alt="Imagen 2" style="height: 100%;width:100%;object-fit: cover;">
             </div>
             <div class="col-md-6">
               <table>
@@ -143,7 +143,7 @@ if ($tipoUsuario) {
         <div class="carousel-item">
           <div class="row">
             <div class="col-md-6">
-              <img class="img-fluid" src="img/carrusel_3.jpg" class="d-block w-100" alt="Imagen 3" style="height: 382px; width:100%;">
+              <img class="img-fluid" src="img/carrusel_3.jpg" class="d-block w-100" alt="Imagen 3" style="height: 100%;width:100%;object-fit: cover;">
             </div>
             <div class="col-md-6">
               <table>

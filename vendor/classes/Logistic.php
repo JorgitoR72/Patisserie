@@ -12,9 +12,10 @@ class Logistic extends Connection
     public function findAll(?string $order, ?string $search): array
     {
         $currentOrder = Misc::getOrder($order);
+        $currentSearch = Misc::getSearch($search);
         $result = [];
         $stmt = $this->conn->prepare("SELECT * FROM receta WHERE nombre LIKE :search ORDER BY nombre $currentOrder");
-        $stmt->bindValue(':search', '%' . $search . '%');
+        $stmt->bindValue(':search', '%' . $currentSearch . '%');
         $stmt->execute();
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

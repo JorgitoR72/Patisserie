@@ -23,6 +23,17 @@ Class Misc
     return $current;
  }
 
+ //Search
+ public static function getSearch(?string $search): string
+{
+    if ($search === null) {
+        // Valor predeterminado si no se proporciona ningún parámetro de búsqueda.
+        return '';
+    }
+        // devolver el parámetro de búsqueda sin cambios.
+        return $search;
+}
+
 //Paginar
  static public function getPage($page)
  {
