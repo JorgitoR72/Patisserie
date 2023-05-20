@@ -11,6 +11,19 @@ body {
   color: #8d4925;
 }
 
+#logoR {
+  position: absolute; top: 10px; left: 0; right: 0; bottom: 0;
+}
+
+@media (max-width: 995px) {
+  #logoR {
+    position: absolute; top: 50px; left: 0; right: 0; bottom: 0;
+  }
+  .navbar-white {
+    background-color: #f1dcc2;
+  }
+}
+
 /* Borde del buscador  */
 .form-control:focus {
   border-color: #8d4925;

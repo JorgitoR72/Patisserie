@@ -94,7 +94,7 @@ if ($tipoUsuario) {
 
 
   <!-- Carousel -->
-  <div class="container px-5" style="margin-top: 250px;">
+  <div class="container px-5" style="margin-top: 240px;">
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">

@@ -71,8 +71,7 @@ $receta = $repository->findAll($order);
       </div>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="<?=$pagina?>"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt=""
-              style="height: 30px; width: 30px;"></a>
+          <a class="nav-link" href="<?=$pagina?>"><strong> <?= $acceso ?> </strong><img src="img/icono_chef.png" alt="" style="height: 30px; width: 30px;"></a>
         </li>
         <?= $seguridad->createExit() ?>
       </ul>
@@ -82,42 +81,32 @@ $receta = $repository->findAll($order);
 
   <!-- banner -->
   <div class="container d-flex flex-column align-items-center" style="position: absolute; top: 10px; left: 0; right: 0; bottom: 0;">
-  <div class="banner"></div>
-  <img src="img/Logotipo Restaurante.png" alt="" class="img-fluid img-responsive">
-  <nav class="navbar">
-    <form class="search-form">
-      <div class="input-group">
-        <input class="form-control form-control-lg search-input" type="text" id="searchInput" placeholder="Busca tu receta..." aria-label="Search" style="color: #8d4925;">
-        <button class="btn btn-warning text-white" style="background-color:#8d4925;" type="button" onclick="searchInPage()"><img src="img/lupa.png" alt=""></button>
-      </div>
-    </form>
-  </nav>
-</div>
-<br><br>
-<!-- Script de Java que hace la funcionabilidad de buscar las palabras que nosotros le pongamos en el buscador -->
-<script>
-  function searchInPage() {
-    var searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    var content = document.documentElement.innerHTML.toLowerCase();
-    
-    if (content.includes(searchTerm)) {
-      window.find(searchTerm);
-    } else {
-      /* En caso de que la palabra no se encuentre saltará un aviso  */
-      alert('La palabra buscada no se encontró en la página.');
-    }
-  }
-</script>
-
+    <div class="banner"></div>
+    <img src="img/Logotipo Restaurante.png" alt="" class="img-fluid img-responsive">
+    <nav class="navbar">
+      <form class="search-form" action="recetas.php" method="GET">
+        <div class="input-group">
+          <input class="form-control form-control-lg search-input" type="text" name="searchInput" placeholder="Busca tu receta..." aria-label="Search" style="color: #8d4925;">
+          <button class="btn btn-warning text-white" style="background-color:#8d4925;" type="submit"><img src="img/lupa.png" alt=""></button>
+        </div>
+      </form>
+    </nav>
+  </div>
+  <br><br>
 
   <!-- Mostrar las recetas con ordenación y paginación -->
 
+  <div class="recetas">
+    <div class="container" style="margin-top: 230px;">
+      <button class="btn btn-light " style="margin-bottom: 20px; background-color: #c57d56;"><?= Misc::orderButton($order) ?></button>
+      <?= $repository->drawReceta($receta, $page, 5) ?>
+    </div>
 
  <div class="recetas">
  <div class="container" style="margin-top: 250px;">
  <button class="btn btn-light " style="margin-bottom: 50px; background-color: #c57d56;"><?= Misc::orderButton($order)?></button>
   <?= $repository->drawReceta($receta, $page, 5) ?>
-
+ </div>
  
   <!-- Footer Start -->
   <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
