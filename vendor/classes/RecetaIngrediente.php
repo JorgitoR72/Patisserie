@@ -4,9 +4,9 @@ class RecetaIngrediente
 {
     private int $idReceta;
     private int $idIngrediente;
-    private int $cantidad;
+    private string $cantidad;
 
-    public function __construct(int $idReceta, int $idIngrediente, int $cantidad)
+    public function __construct(int $idReceta, int $idIngrediente, string $cantidad)
     {
         $this->idReceta = $idReceta;
         $this->idIngrediente = $idIngrediente;
@@ -21,7 +21,7 @@ class RecetaIngrediente
     {
         return $this->idIngrediente;
     }
-    public function getCantidad(): int
+    public function getCantidad(): string
     {
         return $this->cantidad;
     }
