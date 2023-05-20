@@ -10,8 +10,8 @@ if ($tipoUsuario) {
   $pagina = "user.php";
 }
 //Paginación
-$order = isset($_GET["order"]) ? $_GET["order"] : null;
 $page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
+$order = isset($_GET["order"]) ? $_GET["order"] : null;
 $search = isset($_GET["searchInput"]) ? (string) $_GET["searchInput"] : "";
 
 $repository = new Logistic;
