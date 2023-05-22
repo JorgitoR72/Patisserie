@@ -157,6 +157,11 @@ class Logistic extends Connection
                 $stmtIngredienteNombre->execute();
             }
         }
+        // Actualizar el campo idPlan en la tabla planrecetas
+        $stmtPlanRecetas = $this->conn->prepare("UPDATE planrecetas SET idPlan = :idPlan WHERE idReceta = :idReceta");
+        $stmtPlanRecetas->bindParam(":idPlan", $data['idPlan'], PDO::PARAM_INT);
+        $stmtPlanRecetas->bindParam(":idReceta", $data['idReceta'], PDO::PARAM_INT);
+        $stmtPlanRecetas->execute();
 
         return $result;
     }
@@ -181,13 +186,23 @@ class Logistic extends Connection
         $stmt4 = $this->conn->prepare("DELETE FROM `ingrediente` WHERE `idIngrediente` IN (" . implode(',', $ingredientes) . ")");
         $result4 = $stmt4->execute();
 
-        // Eliminar receta
-        $stmt5 = $this->conn->prepare("DELETE FROM `receta` WHERE `idReceta` = :idReceta");
+        // Eliminar relación PlanRecetas
+        $stmt5 = $this->conn->prepare("DELETE FROM `planrecetas` WHERE `idReceta` = :idReceta");
         $stmt5->bindParam(':idReceta', $idReceta, PDO::PARAM_INT);
         $result5 = $stmt5->execute();
 
+        // Eliminar las valoraciones asociadas a la receta
+        $stmt6 = $this->conn->prepare("DELETE FROM `valoracion` WHERE `idReceta` = :idReceta");
+        $stmt6->bindParam(':idReceta', $idReceta, PDO::PARAM_INT);
+        $result6 = $stmt6->execute();
+
+        // Eliminar receta
+        $stmt7 = $this->conn->prepare("DELETE FROM `receta` WHERE `idReceta` = :idReceta");
+        $stmt7->bindParam(':idReceta', $idReceta, PDO::PARAM_INT);
+        $result7 = $stmt7->execute();
+
         // Comprobar si todas las operaciones de eliminación fueron exitosas
-        if ($result1 && $result3 && $result4 && $result5) {
+        if ($result1 && $result3 && $result4 && $result5 && $result6 && $result7) {
             return true;
         }
 

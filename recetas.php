@@ -69,7 +69,6 @@ $receta = $repository->findAll($order, $search);
     </div>
   </nav>
 
-
   <!-- banner -->
   <div class="container d-flex flex-column align-items-center" id="logoR">
     <div class="banner"></div>

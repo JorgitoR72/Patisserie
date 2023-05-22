@@ -27,7 +27,7 @@ if (count($_POST) > 0) {
             $ingrediente = [
                 'idIngrediente' => $idIngrediente[$i],
                 'nombre' => $nombreIngredientes[$i],
-                'cantidad' => (int) $cantidades[$i]
+                'cantidad' => $cantidades[$i]
             ];
             $data['ingredientes'][] = $ingrediente;
         }

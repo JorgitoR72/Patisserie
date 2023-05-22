@@ -88,12 +88,12 @@ body {
   margin-right: 10px;
 }
 
-#sobre-nosotros h1 {
+.sobre-nosotros h1 {
   font-weight: 800;
   text-align: center;
   color: white;
 }
-#sobre-nosotros p, li{
+.sobre-nosotros p, li{
   font-size: 20px;
 }
 

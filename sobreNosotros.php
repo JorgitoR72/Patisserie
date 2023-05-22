@@ -62,8 +62,9 @@ if ($tipoUsuario) {
       </div>
     </div>
   </nav>
+
   <!-- banner -->
-  <div class="container d-flex flex-column align-items-center" style="position: absolute; top: 10px; left: 0; right: 0; bottom: 0;">
+  <div class="container d-flex flex-column align-items-center" id="logoR">
     <div class="banner"></div>
     <img src="img/Logotipo Restaurante.png" alt="" class="img-fluid img-responsive">
     <nav class="navbar">
@@ -75,13 +76,12 @@ if ($tipoUsuario) {
       </form>
     </nav>
   </div>
-  <br><br><br><br><br><br><br><br><br><br><br><br>
-
+  <br><br>
 
   <div class="sobre-nosotros">
-    <div class="container">
+    <div class="container" id="crl">
       <div class="row">
-        <div class="col-xl-4 col-md-6" style="background-color: #8d4925; height: auto; ">
+        <div class="col-lg-6 col-md-12" style="background-color: #8d4925;">
           <h1>HISTORIA DE LA EMPRESA</h1><br>
           <p>Un grupo de amigos amantes de la cocina y la gastronomía quedaban todos los Sábados para cocinar y contar
             sus anécdotas un día uno de ellos propuso crear una página web para compartir con el mundo todas aquellas
@@ -91,28 +91,25 @@ if ($tipoUsuario) {
           </p>
         </div>
 
-        <div class="col-xl-8 col-md-6"><img src="img/historiaEmpresa.jpg" alt="Historia Empresa" class="img-fluid" style="height: 500px;"></div>
+        <div class="col-lg-6 col-md-12"><img src="img/historiaEmpresa.jpg" alt="Historia Empresa" class="img-fluid" style="width: 100%; height:100%;"></div>
       </div><br>
       <div class="row">
-        <div class="col-xl-8 col-md-6" style="background-color: #8d4925; height: auto;">
+        <div class="col-lg-6 col-md-12 order-xl-2 order-lg-2 order-md-2" style="background-color: #8d4925;">
           <h1>NUESTRA MISIÓN</h1><br>
           <p>Nuestra misión es inspirar y facilitar la preparación de comidas deliciosas y nutritivas en los hogares de todo el mundo. Nos esforzamos por ofrecer una amplia variedad de recetas para todos los gustos y necesidades, desde platos rápidos y fáciles para la vida diaria hasta comidas más elaboradas para ocasiones especiales. Además, estamos comprometidos con la promoción de una alimentación saludable y sostenible. En resumen, nuestra misión es ser la mejor página de recetas de pastelería en línea, ayudando a las personas a disfrutar de la comida casera de una manera fácil, saludable y deliciosa.</p>
         </div>
-        <div class="col-xl-4 col-md-6"><img src="img/nuestraMision.webp" alt="Historia Empresa" class="img-fluid" style="height: 370px;"> </div>
+        <div class="col-lg-6 col-md-12 order-xl-1 order-lg-1 order-md-2"><img src="img/nuestraMision.webp" alt="Historia Empresa" class="img-fluid" style="width: 100%; height:100%;"></div>
       </div>
       <br>
       <div class="row">
-        <div class="col-xl-4 col-md-6" style="background-color: #8d4925; height: auto;">
+        <div class="col-lg-6 col-md-12" style="background-color: #8d4925;">
           <h1>METAS DE FUTURO</h1><br>
           <p>Tenemos dos principales metas de futuro una es Incorporar opciones de compras: Ofrecer opciones para comprar los ingredientes necesarios para las recetas directamente desde la página, así como recomendaciones de utensilios y equipos de cocina. Y la otra meta es Incluir opciones de interacción social: Permitir a los usuarios compartir sus propias recetas o modificar las existentes, intercambiar ideas y consejos de cocina, y calificar y comentar sobre las recetas.</p>
         </div>
-        <div class="col-xl-8 col-md-6"><img src="img/metasDeFuturo.webp" alt="Historia Empresa" class="img-fluid" style="height: 500px;"> </div>
+        <div class="col-lg-6 col-md-12"><img src="img/metasDeFuturo.webp" alt="Historia Empresa" class="img-fluid" style="width: 100%; height:100%;"> </div>
       </div>
     </div>
   </div>
-
-
-
 
   <!-- Footer Start -->
   <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
