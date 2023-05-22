@@ -9,18 +9,35 @@ class Logistic extends Connection
     }
 
     /* La función findAll devuelve un array de objetos Receta. Recupera todas las filas de la tabla receta de la base de datos ordenándolas por el campo nombre en el orden especificado en el parámetro $order. El valor de $order es opcional y si no se proporciona, se utiliza el valor predeterminado definido en la función Misc::getOrder(). */
-    public function findAll(?string $order, ?string $search): array
+    public function findAll(?string $order, ?string $search, int $idUsuario): array
     {
         $currentOrder = Misc::getOrder($order);
         $currentSearch = Misc::getSearch($search);
         $result = [];
-        $stmt = $this->conn->prepare("SELECT * FROM receta WHERE nombre LIKE :search ORDER BY nombre $currentOrder");
+
+        // Obtener el plan del usuario
+        $stmtPlan = $this->conn->prepare("SELECT idPlan FROM Usuario WHERE idUsuario = :idUsuario");
+        $stmtPlan->bindValue(':idUsuario', $idUsuario);
+        $stmtPlan->execute();
+        $plan = $stmtPlan->fetchColumn();
+
+        // Consulta SQL para obtener las recetas según el plan del usuario
+        $sql = "SELECT r.* 
+                FROM Receta r
+                INNER JOIN PlanRecetas pr ON r.idReceta = pr.idReceta
+                WHERE (pr.idPlan = 1 OR pr.idPlan <= :plan)
+                AND r.nombre LIKE :search
+                ORDER BY r.nombre $currentOrder";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':plan', $plan);
         $stmt->bindValue(':search', '%' . $currentSearch . '%');
         $stmt->execute();
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $result[] = new Receta(...$row);
         }
+
         return $result;
     }
 

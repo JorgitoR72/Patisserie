@@ -13,9 +13,10 @@ if ($tipoUsuario) {
 $page = isset($_GET["page"]) ? (int) $_GET["page"] : null;
 $order = isset($_GET["order"]) ? $_GET["order"] : null;
 $search = isset($_GET["searchInput"]) ? (string) $_GET["searchInput"] : "";
+$user = $_SESSION['loggedIn']['idUsuario'];
 
 $repository = new Logistic;
-$receta = $repository->findAll($order, $search);
+$receta = $repository->findAll($order, $search, $user);
 
 ?>
 
